@@ -1,6 +1,0 @@
-rootProject.name = "Dormitory-Management-AOS"
-include ':app'
-include ':common'
-include ':network'
-project(':common').projectDir = new File(rootDir, 'modules/common/')
-project(':network').projectDir = new File(rootDir, 'modules/network/')

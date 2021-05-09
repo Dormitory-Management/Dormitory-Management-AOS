@@ -59,7 +59,7 @@ ktx.navigation = "androidx.navigation:navigation-fragment-ktx:$versions.navigati
 ktx.navigation_ui = "androidx.navigation:navigation-ui-ktx:$versions.navigation_version"
 // navigation safe argument
 ktx.safe_argument = "androidx.navigation:navigation-safe-args-gradle-plugin:$versions.navigation_version"
-// use kotlin add build.gradle apply plugin: "androidx.navigation.safeargs.kotlin"
+// use kotlin add build.gradle.kts.kts apply plugin: "androidx.navigation.safeargs.kotlin"
 deps.ktx = ktx
 
 /* constraintlayout */
