@@ -1,18 +1,22 @@
+import org.jetbrains.kotlin.konan.properties.Properties
+
 plugins {
     id("com.android.application")
     kotlin("android")
     kotlin("kapt")
 }
 
-//// Create a variable called keystorePropertiesFile, and initialize it to your
-//// keystore.properties file, in the rootProject folder.
-//val keystorePropertiesFile = rootProject.file("keystore.properties")
-//
-//// Initialize a new Properties() object called keystoreProperties.
-//val keystoreProperties = Properties()
-//
-//// Load your keystore.properties file into the keystoreProperties object.
-//keystoreProperties.load(FileInputStream(keystorePropertiesFile))
+// Create a variable called keystorePropertiesFile, and initialize it to your
+// keystore.properties file, in the rootProject folder.
+val keystorePropertiesFile = rootProject.file("keystore.properties")
+
+// Initialize a new Properties() object called keystoreProperties.
+val keystoreProperties = Properties().apply {
+    load(File("keystore.properties").reader())
+}
+
+// Load your keystore.properties file into the keystoreProperties object.
+//keystoreProperties.load(java.io.FileInputStream(keystorePropertiesFile))
 
 android {
     compileSdkVersion(Apps.compileSdk)
@@ -35,14 +39,14 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
-//    signingConfigs {
-//        releaseWithSignedKey {
-//            keyAlias = keystoreProperties["keyAlias"]
-//            keyPassword = keystoreProperties["keyPassword"]
-//            storeFile = file(keystoreProperties["storeFile"])
-//            storePassword = keystoreProperties["storePassword"]
-//        }
-//    }
+    signingConfigs {
+        create("releaseWithSignedKey") {
+            keyAlias = keystoreProperties["keyAlias"] as String
+            keyPassword = keystoreProperties["keyPassword"] as String
+            storeFile = file(keystoreProperties["storeFile"] as String)
+            storePassword = keystoreProperties["storePassword"] as String
+        }
+    }
 
     buildTypes {
         getByName("debug") {
@@ -98,8 +102,8 @@ dependencies {
     implementation(Dependencies.appcompat)
     implementation(Dependencies.material)
     implementation(Dependencies.constraintlayout)
-//    implementation(project(mapOf(path to ":network")))
-//    implementation(project(mapOf(path to ":common")))
+    implementation(project(path, ":network"))
+    implementation(project(path, ":common"))
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.2")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.3.0")
