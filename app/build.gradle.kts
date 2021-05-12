@@ -19,14 +19,14 @@ val keystoreProperties = Properties().apply {
 //keystoreProperties.load(java.io.FileInputStream(keystorePropertiesFile))
 
 android {
-    compileSdkVersion(Apps.compileSdk)
+    compileSdkVersion(Versions.Apps.compileSdk)
 
     defaultConfig {
         applicationId = "com.bowoon.android.dormitory_management_aos"
-        minSdkVersion(Apps.minSdk)
-        targetSdkVersion(Apps.targetSdk)
-        versionCode = Apps.versionCode
-        versionName = Apps.versionName
+        minSdkVersion(Versions.Apps.minSdk)
+        targetSdkVersion(Versions.Apps.targetSdk)
+        versionCode = Versions.Apps.versionCode
+        versionName = Versions.Apps.versionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
@@ -56,7 +56,7 @@ android {
         getByName("release") {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-//            signingConfig = signingConfigs.getByName("releaseWithSignedKey")
+            signingConfig = signingConfigs.getByName("releaseWithSignedKey")
         }
     }
     flavorDimensions("version")
@@ -97,36 +97,36 @@ android {
 }
 
 dependencies {
-    implementation(Dependencies.kotlin)
-    implementation(Dependencies.coreKtx)
-    implementation(Dependencies.appcompat)
-    implementation(Dependencies.material)
-    implementation(Dependencies.constraintlayout)
-    implementation(project(path, ":network"))
-    implementation(project(path, ":common"))
-    testImplementation("junit:junit:4.13.2")
+    implementation(Dependencies.Kotlin.kotlin)
+    implementation(Dependencies.Ktx.core)
+    implementation(Dependencies.Appcompat.appcompat)
+    implementation(Dependencies.Google.material)
+    implementation(Dependencies.Layout.constraintlayout)
+    implementation(project(mapOf("path" to ":common")))
+    implementation(project(mapOf("path" to ":network")))
+    testImplementation(Dependencies.Test.junit)
     androidTestImplementation("androidx.test.ext:junit:1.1.2")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.3.0")
 
-//    implementation deps.ktx.lifecycle
-//    kapt deps.ktx.lifecycle_compiler
-//    implementation deps.ktx.lifecycle_extension
-//    implementation deps.ktx.viewmodel
-//    implementation deps.ktx.fragment
-//
-//    implementation deps.glide.glide
-//    kapt deps.glide.compiler
-//
-//    implementation deps.okhttp.okhttp
-//    implementation deps.okhttp.logging_interceptor
-//
-//    implementation deps.retrofit.retrofit
-//    implementation deps.retrofit.retrofit_converter_gson
-//    implementation deps.retrofit.retrofit_adapter_rxjava
-//
-//    implementation deps.gson
-//    implementation deps.rx.java
-//    implementation deps.rx.android
-//    implementation deps.rx.kotlin
-//    implementation deps.rx.binding
+    implementation(Dependencies.Ktx.lifecycle)
+    kapt(Dependencies.Ktx.lifecycleCompiler)
+    implementation(Dependencies.Ktx.lifecycleExtension)
+    implementation(Dependencies.Ktx.viewmodel)
+    implementation(Dependencies.Ktx.fragment)
+
+    implementation(Dependencies.Glide.glide)
+    kapt(Dependencies.Glide.compiler)
+
+    implementation(Dependencies.Okhttp.okhttp)
+    implementation(Dependencies.Okhttp.loggingInterceptor)
+
+    implementation(Dependencies.Retrofit2.retrofit)
+    implementation(Dependencies.Retrofit2.converterGson)
+    implementation(Dependencies.Retrofit2.adapterRxjava)
+    implementation(Dependencies.Google.gson)
+
+    implementation(Dependencies.Rx.java)
+    implementation(Dependencies.Rx.android)
+    implementation(Dependencies.Rx.kotlin)
+    implementation(Dependencies.Rx.binding)
 }

@@ -5,14 +5,14 @@ plugins {
 }
 
 android {
-    compileSdkVersion(Apps.compileSdk)
-    buildToolsVersion(Apps.buildToolVersion)
+    compileSdkVersion(Versions.Apps.compileSdk)
+    buildToolsVersion(Versions.Apps.buildToolVersion)
 
     defaultConfig {
-        minSdkVersion(Apps.minSdk)
-        targetSdkVersion(Apps.targetSdk)
-        versionCode = Apps.commonVersionCode
-        versionName = Apps.commonVersionName
+        minSdkVersion(Versions.Apps.minSdk)
+        targetSdkVersion(Versions.Apps.targetSdk)
+        versionCode = Versions.Apps.commonVersionCode
+        versionName = Versions.Apps.commonVersionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -55,21 +55,21 @@ android {
 //exportJar.dependsOn(deleteObjectJar,build)
 
 dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.5.0")
-    implementation("androidx.core:core-ktx:1.3.2")
-    implementation("androidx.appcompat:appcompat:1.2.0")
-    implementation("com.google.android.material:material:1.3.0")
+//    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.5.0")
+//    implementation("androidx.core:core-ktx:1.3.2")
+//    implementation("androidx.appcompat:appcompat:1.2.0")
+    implementation(Dependencies.Google.material)
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.2")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.3.0")
 
-//    implementation deps.gson
-//
-//    implementation deps.glide.glide
-//    kapt deps.glide.compiler
-//
-//    implementation deps.rx.java
-//    implementation deps.rx.android
-//    implementation deps.rx.kotlin
-//    implementation deps.rx.binding
+    implementation(Dependencies.Google.gson)
+
+    implementation(Dependencies.Glide.glide)
+    kapt(Dependencies.Glide.compiler)
+
+    implementation(Dependencies.Rx.java)
+    implementation(Dependencies.Rx.android)
+    implementation(Dependencies.Rx.kotlin)
+    implementation(Dependencies.Rx.binding)
 }

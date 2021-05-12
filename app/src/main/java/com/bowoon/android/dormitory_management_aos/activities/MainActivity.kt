@@ -8,6 +8,7 @@ import com.bowoon.android.dormitory_management_aos.models.Persons
 import com.bowoon.android.dormitory_management_aos.R
 import com.bowoon.android.dormitory_management_aos.activities.viewmodels.MainActivityViewModel
 import com.bowoon.android.dormitory_management_aos.databinding.ActivityMainBinding
+import com.bowoon.android.dormitory_management_aos.fragments.MainFragment
 import com.bowoon.android.network.RxNetworkError
 import com.bowoon.android.network.createRetrofit
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -39,8 +40,8 @@ class MainActivity : DataBindingActivityWithViewModel<ActivityMainBinding, MainA
             RxJava3CallAdapterFactory.create()
         )
 
-//        getData()
-//        initLiveData()
+        getData()
+        initLiveData()
         initBinding()
     }
 
@@ -58,7 +59,7 @@ class MainActivity : DataBindingActivityWithViewModel<ActivityMainBinding, MainA
 //            it.activityVM = activityVM
 //        }
 
-//        supportFragmentManager.beginTransaction().add(binding.fcvPerson.id, MainFragment()).commit()
+        supportFragmentManager.beginTransaction().add(binding.fcvPerson.id, MainFragment()).commit()
     }
 
     private fun getData() {

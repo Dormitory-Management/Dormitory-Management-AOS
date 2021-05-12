@@ -4,14 +4,14 @@ plugins {
 }
 
 android {
-    compileSdkVersion(Apps.compileSdk)
-    buildToolsVersion(Apps.buildToolVersion)
+    compileSdkVersion(Versions.Apps.compileSdk)
+    buildToolsVersion(Versions.Apps.buildToolVersion)
 
     defaultConfig {
-        minSdkVersion(Apps.minSdk)
-        targetSdkVersion(Apps.targetSdk)
-        versionCode = Apps.networkVersionCode
-        versionName = Apps.networkVersionName
+        minSdkVersion(Versions.Apps.minSdk)
+        targetSdkVersion(Versions.Apps.targetSdk)
+        versionCode = Versions.Apps.networkVersionCode
+        versionName = Versions.Apps.networkVersionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -39,10 +39,10 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.2")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.3.0")
 
-//    implementation deps.okhttp.okhttp
-//    implementation deps.okhttp.logging_interceptor
-//
-//    implementation deps.retrofit.retrofit
-//
-//    implementation deps.rx.java
+    implementation(Dependencies.Okhttp.okhttp)
+    implementation(Dependencies.Okhttp.loggingInterceptor)
+
+    implementation(Dependencies.Retrofit2.retrofit)
+
+    implementation(Dependencies.Rx.java)
 }
