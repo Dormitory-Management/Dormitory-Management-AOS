@@ -110,6 +110,9 @@ dependencies {
     implementation(Dependencies.Ktx.viewmodel)
     implementation(Dependencies.Ktx.fragment)
 
+    implementation(Dependencies.Ktx.navigation)
+    implementation(Dependencies.Ktx.navigationUi)
+
     implementation(Dependencies.Glide.glide)
     kapt(Dependencies.Glide.compiler)
 

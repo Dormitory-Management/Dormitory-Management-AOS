@@ -1,4 +1,4 @@
-package com.bowoon.android.dormitory_management_aos.fragments
+package com.bowoon.android.dormitory_management_aos.fragments.home
 
 import android.os.Bundle
 import android.view.View
@@ -8,22 +8,22 @@ import com.bowoon.android.dormitory_management_aos.adapter.PersonAdapter
 import com.bowoon.android.dormitory_management_aos.base.DataBindingFragmentWithViewModel
 import com.bowoon.android.dormitory_management_aos.databinding.FragmentMainBinding
 import com.bowoon.android.dormitory_management_aos.dialogs.NetworkErrorDialog
-import com.bowoon.android.dormitory_management_aos.fragments.viewmodels.MainFragmentViewModel
+import com.bowoon.android.dormitory_management_aos.fragments.home.viewmodels.HomeFragmentViewModel
 import com.bowoon.android.network.RxNetworkError
 
-class MainFragment : DataBindingFragmentWithViewModel<FragmentMainBinding, MainFragmentViewModel, MainActivityViewModel>
-        (R.layout.fragment_main, MainFragmentViewModel::class.java, MainActivityViewModel::class.java) {
+class HomeFragment : DataBindingFragmentWithViewModel<FragmentMainBinding, HomeFragmentViewModel, MainActivityViewModel>
+        (R.layout.fragment_main, HomeFragmentViewModel::class.java, MainActivityViewModel::class.java) {
     companion object {
-        val TAG = MainFragment::class.simpleName ?: "MainFragment"
+        val TAG = HomeFragment::class.simpleName ?: "MainFragment"
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.apply {
-            lifecycleOwner = this@MainFragment
-            fragmentVM = this@MainFragment.fragmentVM
-            activityVM = this@MainFragment.activityVM
+            lifecycleOwner = this@HomeFragment
+            fragmentVM = this@HomeFragment.fragmentVM
+            activityVM = this@HomeFragment.activityVM
         }
         lifecycle.addObserver(fragmentVM)
 

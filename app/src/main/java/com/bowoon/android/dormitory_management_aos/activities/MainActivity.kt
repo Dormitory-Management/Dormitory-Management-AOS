@@ -1,28 +1,16 @@
 package com.bowoon.android.dormitory_management_aos.activities
 
 import android.os.Bundle
-import com.bowoon.android.dormitory_management_aos.api.PersonApi
-import com.bowoon.android.dormitory_management_aos.base.DataBindingActivityWithViewModel
-import com.bowoon.android.dormitory_management_aos.dialogs.NetworkErrorDialog
-import com.bowoon.android.dormitory_management_aos.models.Persons
+import androidx.navigation.ui.setupActionBarWithNavController
 import com.bowoon.android.dormitory_management_aos.R
 import com.bowoon.android.dormitory_management_aos.activities.viewmodels.MainActivityViewModel
+import com.bowoon.android.dormitory_management_aos.base.DataBindingActivityWithViewModel
+import com.bowoon.android.dormitory_management_aos.base.navGraphIds
+import com.bowoon.android.dormitory_management_aos.component.navigation.setupWithNavController
 import com.bowoon.android.dormitory_management_aos.databinding.ActivityMainBinding
-import com.bowoon.android.dormitory_management_aos.fragments.MainFragment
-import com.bowoon.android.network.RxNetworkError
-import com.bowoon.android.network.createRetrofit
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.Single
-import io.reactivex.rxjava3.kotlin.addTo
-import io.reactivex.rxjava3.schedulers.Schedulers
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
-import retrofit2.converter.gson.GsonConverterFactory
 
 class MainActivity : DataBindingActivityWithViewModel<ActivityMainBinding, MainActivityViewModel>
     (R.layout.activity_main, MainActivityViewModel::class.java) {
-    private lateinit var personApi: PersonApi
 
     companion object {
         val TAG = MainActivity::class.simpleName ?: "MainActivity"
@@ -31,64 +19,21 @@ class MainActivity : DataBindingActivityWithViewModel<ActivityMainBinding, MainA
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        personApi = createRetrofit<PersonApi>(
-            "https://randomuser.me/",
-            OkHttpClient.Builder().apply {
-                addInterceptor(HttpLoggingInterceptor().apply { this.level = HttpLoggingInterceptor.Level.BODY })
-            }.build(),
-            GsonConverterFactory.create(),
-            RxJava3CallAdapterFactory.create()
-        )
-
-        getData()
         initLiveData()
         initBinding()
     }
 
     override fun initLiveData() {
-//        activityVM.personList.observe(this) { personList ->
-//            (binding.rvPersonList.adapter as? PersonAdapter)?.let { adapter ->
-//                adapter.items = personList
-//                adapter.notifyDataSetChanged()
-//            }
-//        }
+        activityVM.currentNavController?.observe(this) { navController ->
+            setupActionBarWithNavController(navController)
+        }
     }
 
     override fun initBinding() {
-//        binding.rvPersonList.adapter = PersonAdapter().also {
-//            it.activityVM = activityVM
-//        }
-
-        supportFragmentManager.beginTransaction().add(binding.fcvPerson.id, MainFragment()).commit()
+        binding.bnvBottomFooter.setupWithNavController(navGraphIds?.getGraphList() ?: mutableListOf(), supportFragmentManager, binding.fcvMainView.id, intent)
     }
 
-    private fun getData() {
-        getUsers()
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(
-                { person -> activityVM.personList.value = person?.persons },
-                { e ->
-                    e.printStackTrace()
-                    NetworkErrorDialog(
-                        RxNetworkError.getErrorMessage(e),
-                        "새로고침",
-                        { getData() },
-                        "취소",
-                        {}
-                    ).show(supportFragmentManager, TAG)
-                }
-            )
-    }
-
-    private fun getUsers(): Single<Persons> {
-        return Single.create { emitter ->
-            personApi
-                .getUsers(10)
-                .subscribeOn(Schedulers.io())
-                .subscribe(
-                    { emitter.onSuccess(it) },
-                    { e -> emitter.onError(e) }
-                ).addTo(activityVM.compositeDisposable)
-        }
+    override fun onSupportNavigateUp(): Boolean {
+        return activityVM.currentNavController?.value?.navigateUp() ?: false
     }
 }

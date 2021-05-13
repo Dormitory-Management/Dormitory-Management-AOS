@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
-
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
 
         <variable
             name="fragmentVM"
-            type="com.bowoon.android.dormitory_management_aos.fragments.home.viewmodels.HomeFragmentViewModel" />
+            type="com.bowoon.android.dormitory_management_aos.fragments.notice.viewmodels.NoticeFragmentViewModel" />
 
         <variable
             name="activityVM"
@@ -18,12 +15,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_person_list"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/viewholder_person" />
+            android:gravity="center"
+            android:text="Notice Fragment"
+            android:textColor="@color/black"
+            android:textSize="30dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

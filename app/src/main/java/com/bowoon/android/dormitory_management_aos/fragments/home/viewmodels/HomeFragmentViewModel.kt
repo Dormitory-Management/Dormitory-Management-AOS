@@ -1,4 +1,4 @@
-package com.bowoon.android.dormitory_management_aos.fragments.viewmodels
+package com.bowoon.android.dormitory_management_aos.fragments.home.viewmodels
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.MutableLiveData
@@ -14,7 +14,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
-class MainFragmentViewModel : BaseViewModel() {
+class HomeFragmentViewModel : BaseViewModel() {
     private lateinit var personApi: PersonApi
     val personList = MutableLiveData<MutableList<Person>>()
     val showDialog = MutableLiveData<Throwable>()
