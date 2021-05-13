@@ -123,5 +123,7 @@ object Dependencies {
 
     object Test {
         const val junit = "junit:junit:${Versions.Plugins.junit}"
+        const val junitExt = "androidx.test.ext:junit:${Versions.Plugins.junitExt}"
+        const val espresso = "androidx.test.espresso:espresso-core:${Versions.Plugins.espressoCore}"
     }
 }

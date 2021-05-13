@@ -36,32 +36,33 @@ android {
     }
 }
 
-////기존library.jar파일 삭제.
-//task deleteObjectJar(type:Delete){
-//    delete'release/libraryName.jar'
-//}
-//
-////release폴더에library이름으로jar생성.
-//task exportJar(type:Copy){
-//    //aar_main_jar/release 에서 classes.jar 파일을 가져온다.
-//    from('build/intermediates/aar_main_jar/release/')
-//    into('release/')
-//    include('classes.jar')
-//    rename('classes.jar','libraryName.jar')
-//    rename('classes.jar','android_common_library.jar')
-//}
-//
-////exportJar실행시 deleteObjectJar가 실행
-//exportJar.dependsOn(deleteObjectJar,build)
+//기존library.jar파일 삭제.
+task("deleteObjectJar", Delete::class) {
+    delete = setOf("release/libraryName.jar")
+}
+
+//release폴더에library이름으로jar생성.
+task("exportJar", Copy::class) {
+    //aar_main_jar/release 에서 classes.jar 파일을 가져온다.
+    from("build/intermediates/aar_main_jar/release/")
+    into("release/")
+    include("classes.jar")
+    rename("classes.jar", "libraryName.jar")
+    rename("classes.jar", "android_common_library.jar")
+}
+
+//exportJar실행시 deleteObjectJar가 실행
+//exportJar.dependsOn(deleteObjectJar, build)
+tasks {
+    "build" {
+        dependsOn("deleteObjectJar")
+    }
+}
 
 dependencies {
-//    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.5.0")
-//    implementation("androidx.core:core-ktx:1.3.2")
-//    implementation("androidx.appcompat:appcompat:1.2.0")
     implementation(Dependencies.Google.material)
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.2")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.3.0")
+    testImplementation(Dependencies.Test.junit)
+    androidTestImplementation(Dependencies.Test.junitExt)
 
     implementation(Dependencies.Google.gson)
 

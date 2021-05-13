@@ -33,11 +33,9 @@ android {
 }
 
 dependencies {
-//    implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin_version}"
-    implementation("androidx.core:core-ktx:1.3.2")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.2")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.3.0")
+    implementation(Dependencies.Ktx.core)
+    testImplementation(Dependencies.Test.junit)
+    androidTestImplementation(Dependencies.Test.junitExt)
 
     implementation(Dependencies.Okhttp.okhttp)
     implementation(Dependencies.Okhttp.loggingInterceptor)

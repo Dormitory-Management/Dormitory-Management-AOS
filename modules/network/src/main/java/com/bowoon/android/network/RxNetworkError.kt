@@ -106,10 +106,7 @@ object RxNetworkError {
     fun getErrorMessage(throwable: Throwable): String {
         when (throwable) {
             is HttpException -> {
-                val code = throwable.code()
-                val message = throwable.message()
-
-                return when (code) {
+                return when (throwable.code()) {
                     400 -> { "알 수 없는 요청입니다." }
                     401 -> { "권한이 필요합니다." }
                     402 -> { "결제가 필요합니다." }
@@ -128,9 +125,9 @@ object RxNetworkError {
             }
             else -> {
                 return if (BuildConfig.DEBUG) {
-                    throwable.message ?: DEFAULT_ERROR_MESSAGE
+                    throwable.message ?: DEFAULT_NETWORK_ERROR_MESSAGE
                 } else {
-                    DEFAULT_ERROR_MESSAGE
+                    DEFAULT_NETWORK_ERROR_MESSAGE
                 }
             }
         }

@@ -1,4 +1,7 @@
 import org.jetbrains.kotlin.konan.properties.Properties
+import com.android.build.gradle.internal.api.BaseVariantOutputImpl
+import java.util.Date
+import java.text.SimpleDateFormat
 
 plugins {
     id("com.android.application")
@@ -83,17 +86,17 @@ android {
         dataBinding = true
     }
 
-//    applicationVariants.all { variant ->
-//        variant.outputs.each { output ->
-//            def buildVariant = ""
-//            if (variant.buildType.name == "release") {
-//                buildVariant += "RELEASE"
-//            } else {
-//                buildVariant += "SNAPSHOT"
-//            }
-//            output.outputFileName = "${rootProject.name}_v${variant.versionName}_${new Date().format('yyyyMMdd_HH')}-${buildVariant}.apk"
-//        }
-//    }
+    applicationVariants.all {
+        outputs.forEach { output ->
+            val format = SimpleDateFormat("yyyyMMdd_HH")
+            val buildVariant = if (buildType.name == "release") {
+                "RELEASE"
+            } else {
+                "SNAPSHOT"
+            }
+            (output as? BaseVariantOutputImpl)?.outputFileName = "${rootProject.name}_v${versionName}_${format.format(Date())}-${buildVariant}.apk"
+        }
+    }
 }
 
 dependencies {
@@ -105,8 +108,8 @@ dependencies {
     implementation(project(mapOf("path" to ":common")))
     implementation(project(mapOf("path" to ":network")))
     testImplementation(Dependencies.Test.junit)
-    androidTestImplementation("androidx.test.ext:junit:1.1.2")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.3.0")
+    androidTestImplementation(Dependencies.Test.junitExt)
+    androidTestImplementation(Dependencies.Test.espresso)
 
     implementation(Dependencies.Ktx.lifecycle)
     kapt(Dependencies.Ktx.lifecycleCompiler)

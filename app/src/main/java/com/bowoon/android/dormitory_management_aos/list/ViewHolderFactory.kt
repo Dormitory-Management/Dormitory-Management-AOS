@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bowoon.android.android_template.R
+import com.bowoon.android.dormitory_management_aos.R
 import com.bowoon.android.dormitory_management_aos.base.BaseViewModel
 import com.bowoon.android.dormitory_management_aos.list.viewholders.PersonViewHolder
 import com.bowoon.android.dormitory_management_aos.models.Person

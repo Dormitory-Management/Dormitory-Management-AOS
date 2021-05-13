@@ -17,6 +17,8 @@ object Versions {
         const val kotlin = "1.5.0"
         const val appcompat = "1.2.0"
         const val junit = "4.13.2"
+        const val junitExt = "1.1.2"
+        const val espressoCore = "3.3.0"
         const val coreKtx = "1.3.2"
         const val lifecycleVersion = "2.2.0"
         const val viewmodelVersion = "2.2.0"
