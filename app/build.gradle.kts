@@ -9,17 +9,11 @@ plugins {
     kotlin("kapt")
 }
 
-// Create a variable called keystorePropertiesFile, and initialize it to your
-// keystore.properties file, in the rootProject folder.
-val keystorePropertiesFile = rootProject.file("keystore.properties")
-
-// Initialize a new Properties() object called keystoreProperties.
 val keystoreProperties = Properties().apply {
     load(File("keystore.properties").reader())
 }
 
-// Load your keystore.properties file into the keystoreProperties object.
-//keystoreProperties.load(java.io.FileInputStream(keystorePropertiesFile))
+val formatter = SimpleDateFormat("yyyyMMdd_HH")
 
 android {
     compileSdkVersion(Versions.Apps.compileSdk)
@@ -33,7 +27,7 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
-//        setProperty("archivesBaseName", "${rootProject.name}_v${versionName}_${Date().format('yyyyMMdd_HH')}")
+        setProperty("archivesBaseName", "${rootProject.name}_v${versionName}_${formatter.format(Date())}")
     }
 
     buildTypes {
@@ -88,13 +82,12 @@ android {
 
     applicationVariants.all {
         outputs.forEach { output ->
-            val format = SimpleDateFormat("yyyyMMdd_HH")
             val buildVariant = if (buildType.name == "release") {
                 "RELEASE"
             } else {
                 "SNAPSHOT"
             }
-            (output as? BaseVariantOutputImpl)?.outputFileName = "${rootProject.name}_v${versionName}_${format.format(Date())}-${buildVariant}.apk"
+            (output as? BaseVariantOutputImpl)?.outputFileName = "${rootProject.name}_v${versionName}_${formatter.format(Date())}-${buildVariant}.apk"
         }
     }
 }
