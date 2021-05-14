@@ -19,6 +19,13 @@ class MainActivity : DataBindingActivityWithViewModel<ActivityMainBinding, MainA
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        supportActionBar?.hide()
+
+        binding.apply {
+            lifecycleOwner = this@MainActivity
+        }
+        lifecycle.addObserver(activityVM)
+
         initLiveData()
         initBinding()
     }

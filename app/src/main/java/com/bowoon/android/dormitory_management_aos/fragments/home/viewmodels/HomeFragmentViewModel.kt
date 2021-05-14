@@ -33,7 +33,7 @@ class HomeFragmentViewModel : BaseViewModel() {
     }
 
     fun getData() {
-        personApi.getUsers(10)
+        personApi.getUsers(100)
             .rxRunOnUiThread()
             .subscribe(
                 { person -> personList.value = person?.persons },

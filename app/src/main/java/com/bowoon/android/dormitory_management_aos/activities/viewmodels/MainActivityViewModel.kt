@@ -6,4 +6,5 @@ import com.bowoon.android.dormitory_management_aos.base.BaseViewModel
 
 class MainActivityViewModel : BaseViewModel() {
     var currentNavController: MutableLiveData<NavController>? = null
+    val onScrollChange = MutableLiveData<Boolean>()
 }
