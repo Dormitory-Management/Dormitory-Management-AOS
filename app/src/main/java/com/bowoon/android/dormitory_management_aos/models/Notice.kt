@@ -1,5 +1,9 @@
 package com.bowoon.android.dormitory_management_aos.models
 
+data class NoticeData(
+    val data: MutableList<Notice>? = null
+)
+
 data class Notice(
     val id: Int? = 0,
     val title: String? = null,

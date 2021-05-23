@@ -69,6 +69,11 @@ android {
             versionNameSuffix = "-full"
         }
     }
+    sourceSets {
+        getByName("demo") {
+            assets.setSrcDirs(listOf("src/main/assets", "src/main/sampledata", "sampledata"))
+        }
+    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
