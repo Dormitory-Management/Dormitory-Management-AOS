@@ -22,7 +22,7 @@ object Dependencies {
         const val lifecycleExtension = "androidx.lifecycle:lifecycle-extensions:${Versions.Plugins.lifecycleVersion}"
 
         // viewmodel
-        const val viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.Plugins.viewmodelVersion}"
+        const val viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.Plugins.viewModelVersion}"
 
         // fragment
         const val fragment = "androidx.fragment:fragment-ktx:${Versions.Plugins.fragmentVersion}"
@@ -38,7 +38,7 @@ object Dependencies {
 
     object Layout {
         /* constraintlayout */
-        const val constraintlayout = "androidx.constraintlayout:constraintlayout:${Versions.Plugins.constraintlayout}"
+        const val constraintlayout = "androidx.constraintlayout:constraintlayout:${Versions.Plugins.constraintLayout}"
 
         // swipe-to-refresh
         // 스와이프 하여 새로고침
@@ -116,9 +116,9 @@ object Dependencies {
     // rx binding : https://github.com/JakeWharton/RxBinding
     object Rx {
         const val java = "io.reactivex.rxjava3:rxjava:${Versions.Plugins.rxjavaVersion}"
-        const val android = "io.reactivex.rxjava3:rxandroid:${Versions.Plugins.rxandroidVersion}"
+        const val android = "io.reactivex.rxjava3:rxandroid:${Versions.Plugins.rxAndroidVersion}"
         const val kotlin = "io.reactivex.rxjava3:rxkotlin:${Versions.Plugins.rxkotlinVersion}"
-        const val binding = "com.jakewharton.rxbinding4:rxbinding:${Versions.Plugins.rxbindingBersion}"
+        const val binding = "com.jakewharton.rxbinding4:rxbinding:${Versions.Plugins.rxBindingVersion}"
     }
 
     object Test {

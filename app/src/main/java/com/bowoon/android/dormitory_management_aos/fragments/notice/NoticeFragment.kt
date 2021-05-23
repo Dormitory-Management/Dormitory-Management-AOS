@@ -2,6 +2,7 @@ package com.bowoon.android.dormitory_management_aos.fragments.notice
 
 import android.os.Bundle
 import android.view.View
+import com.bowoon.android.common.utils.fromJson
 import com.bowoon.android.dormitory_management_aos.R
 import com.bowoon.android.dormitory_management_aos.activities.viewmodels.MainActivityViewModel
 import com.bowoon.android.dormitory_management_aos.adapter.NoticeAdapter
@@ -9,6 +10,8 @@ import com.bowoon.android.dormitory_management_aos.base.DataBindingFragmentWithV
 import com.bowoon.android.dormitory_management_aos.databinding.FragmentNoticeBinding
 import com.bowoon.android.dormitory_management_aos.fragments.notice.viewmodels.NoticeFragmentViewModel
 import com.bowoon.android.dormitory_management_aos.models.Notice
+import com.google.gson.Gson
+import java.util.prefs.Preferences
 
 class NoticeFragment : DataBindingFragmentWithViewModel<FragmentNoticeBinding, NoticeFragmentViewModel, MainActivityViewModel>
     (R.layout.fragment_notice, NoticeFragmentViewModel::class.java, MainActivityViewModel::class.java) {
@@ -33,13 +36,9 @@ class NoticeFragment : DataBindingFragmentWithViewModel<FragmentNoticeBinding, N
     override fun initLiveData() {
         fragmentVM.noticeList.observe(viewLifecycleOwner) {
             (binding.rvNotice.adapter as? NoticeAdapter)?.let { adapter ->
-                adapter.items = mutableListOf(
-                    Notice(0, "Hello, World! 1", "Hello, World! 1", System.currentTimeMillis(), "admin"),
-                    Notice(0, "Hello, World! 2", "Hello, World! 2", System.currentTimeMillis(), "admin"),
-                    Notice(0, "Hello, World! 3", "Hello, World! 3", System.currentTimeMillis(), "admin"),
-                    Notice(0, "Hello, World! 4", "Hello, World! 4", System.currentTimeMillis(), "admin"),
-                    Notice(0, "Hello, World! 5", "Hello, World! 5", System.currentTimeMillis(), "admin")
-                )
+                adapter.items = requireContext().assets.open("notice.json").bufferedReader().use {
+                    Gson().fromJson<MutableList<Notice>>(it.readText())
+                }
                 adapter.notifyDataSetChanged()
             }
         }
