@@ -1,9 +1,10 @@
 package com.bowoon.android.dormitory_management_aos.list.viewholders
 
-import com.bowoon.android.common.utils.showShortSnackbar
+import com.bowoon.android.dormitory_management_aos.R
 import com.bowoon.android.dormitory_management_aos.base.BaseViewHolder
 import com.bowoon.android.dormitory_management_aos.databinding.ViewholderNoticeBinding
 import com.bowoon.android.dormitory_management_aos.models.Notice
+import com.google.android.material.snackbar.Snackbar
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -14,7 +15,9 @@ class NoticeViewHolder(private val binding: ViewholderNoticeBinding) : BaseViewH
     }
 
     fun itemClick() {
-        binding.root.context.showShortSnackbar(binding.root, "itemClick $adapterPosition")
+        Snackbar.make(binding.root, "itemClick $adapterPosition", Snackbar.LENGTH_SHORT).apply {
+            anchorView = binding.root.rootView.findViewById(R.id.bnv_bottom_footer)
+        }.show()
     }
 
     fun convertTime(time: Long?, isTime: Boolean = false): String? {
