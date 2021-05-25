@@ -27,14 +27,19 @@ class NoticeFragment : DataBindingFragmentWithViewModel<FragmentNoticeBinding, N
         }
         lifecycle.addObserver(fragmentVM)
 
+        initSampleData()
         initLiveData()
         initBinding()
+    }
+
+    private fun initSampleData() {
+        fragmentVM.noticeList.value = requireContext().readAssetsFile<NoticeData>("notice.json")
     }
 
     override fun initLiveData() {
         fragmentVM.noticeList.observe(viewLifecycleOwner) {
             (binding.rvNotice.adapter as? NoticeAdapter)?.let { adapter ->
-                adapter.items = requireContext().readAssetsFile<NoticeData>("notice.json").data
+                adapter.items = it.data
                 adapter.notifyDataSetChanged()
             }
         }
