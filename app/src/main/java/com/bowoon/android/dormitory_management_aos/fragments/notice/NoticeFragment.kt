@@ -14,7 +14,7 @@ import com.bowoon.android.dormitory_management_aos.models.NoticeData
 class NoticeFragment : DataBindingFragmentWithViewModel<FragmentNoticeBinding, NoticeFragmentViewModel, MainActivityViewModel>
     (R.layout.fragment_notice, NoticeFragmentViewModel::class.java, MainActivityViewModel::class.java) {
     companion object {
-        val TAG = NoticeFragment::class.simpleName ?: "MainFragment"
+        val TAG = NoticeFragment::class.simpleName ?: "NoticeFragment"
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

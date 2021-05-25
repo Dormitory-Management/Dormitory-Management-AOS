@@ -1,0 +1,46 @@
+{
+  "data": [
+    {
+      "id": 0,
+      "roomNumber": 100,
+      "people": [
+        {
+          "name": "Kim",
+          "type": "student"
+        },
+        {
+          "name": "Lee",
+          "type": "student"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "roomNumber": 101,
+      "people": [
+        {
+          "name": "Park",
+          "type": "student"
+        },
+        {
+          "name": "Choi",
+          "type": "student"
+        },
+        {
+          "name": "Cho",
+          "type": "student"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "roomNumber": 102,
+      "people": [
+        {
+          "name": "Kim",
+          "type": "student"
+        }
+      ]
+    }
+  ]
+}

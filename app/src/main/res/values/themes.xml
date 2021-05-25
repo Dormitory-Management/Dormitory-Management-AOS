@@ -13,4 +13,19 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="RoomCheckPopup" parent="@style/Theme.Design.Light.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="bottomSheetStyle">@style/BottomSheet</item>
+        <item name="android:windowAnimationStyle">@style/AnimationHomePopup</item>
+    </style>
+
+    <style name="BottomSheet" parent="@style/Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/dialog_room_check_background</item>
+    </style>
+
+    <style name="AnimationHomePopup">
+        <item name="android:windowEnterAnimation">@null</item>
+    </style>
 </resources>

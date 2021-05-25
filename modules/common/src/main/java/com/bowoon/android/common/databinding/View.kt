@@ -40,11 +40,9 @@ fun View?.singleClick(action: () -> Unit) {
 
         it.setOnClickListener {
             if (SystemClock.elapsedRealtime() - lastClickTime < TIME_INTERVAL) {
-                Log.d("singleClick", "return")
                 return@setOnClickListener
             }
             else {
-                Log.d("singleClick", "action")
                 action.invoke()
             }
             lastClickTime = SystemClock.elapsedRealtime()
