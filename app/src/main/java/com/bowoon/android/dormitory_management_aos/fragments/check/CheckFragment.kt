@@ -6,13 +6,11 @@ import com.bowoon.android.common.utils.readAssetsFile
 import com.bowoon.android.dormitory_management_aos.R
 import com.bowoon.android.dormitory_management_aos.activities.viewmodels.MainActivityViewModel
 import com.bowoon.android.dormitory_management_aos.adapter.CheckAdapter
-import com.bowoon.android.dormitory_management_aos.adapter.NoticeAdapter
 import com.bowoon.android.dormitory_management_aos.base.DataBindingFragmentWithViewModel
 import com.bowoon.android.dormitory_management_aos.databinding.FragmentCheckBinding
 import com.bowoon.android.dormitory_management_aos.dialogs.RoomCheckDialog
 import com.bowoon.android.dormitory_management_aos.fragments.check.viewmodels.CheckFragmentViewModel
 import com.bowoon.android.dormitory_management_aos.models.CheckData
-import com.bowoon.android.dormitory_management_aos.models.NoticeData
 
 class CheckFragment : DataBindingFragmentWithViewModel<FragmentCheckBinding, CheckFragmentViewModel, MainActivityViewModel>
     (R.layout.fragment_check, CheckFragmentViewModel::class.java, MainActivityViewModel::class.java) {
@@ -36,9 +34,7 @@ class CheckFragment : DataBindingFragmentWithViewModel<FragmentCheckBinding, Che
     }
 
     private fun initSampleData() {
-        requireContext().readAssetsFile<CheckData>("check.json").let {
-            fragmentVM.checkList.value = it
-        }
+        fragmentVM.checkList.value = requireContext().readAssetsFile<CheckData>("check.json")
     }
 
     override fun initLiveData() {

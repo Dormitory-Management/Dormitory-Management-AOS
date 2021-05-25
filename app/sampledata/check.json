@@ -6,11 +6,13 @@
       "people": [
         {
           "name": "Kim",
-          "type": "student"
+          "type": "student",
+          "check": false
         },
         {
           "name": "Lee",
-          "type": "student"
+          "type": "student",
+          "check": false
         }
       ]
     },
@@ -20,15 +22,18 @@
       "people": [
         {
           "name": "Park",
-          "type": "student"
+          "type": "student",
+          "check": false
         },
         {
           "name": "Choi",
-          "type": "student"
+          "type": "student",
+          "check": false
         },
         {
           "name": "Cho",
-          "type": "student"
+          "type": "student",
+          "check": false
         }
       ]
     },
@@ -38,7 +43,8 @@
       "people": [
         {
           "name": "Kim",
-          "type": "student"
+          "type": "student",
+          "check": false
         }
       ]
     }

@@ -24,7 +24,7 @@ object ViewHolderFactory {
                 CheckViewHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.viewholder_check, parent, false), fragmentVM as CheckFragmentViewModel)
             }
             ListType.PEOPLE -> {
-                PeopleViewHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.viewholder_room_check, parent, false))
+                PeopleViewHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.viewholder_room_check, parent, false), fragmentVM as CheckFragmentViewModel)
             }
         }
     }
@@ -34,7 +34,7 @@ object ViewHolderFactory {
             when (holder) {
                 is NoticeViewHolder -> { holder.bind(item as Notice) }
                 is CheckViewHolder -> { holder.bind(item as Check) }
-                is PeopleViewHolder -> { holder.bind(item as People) }
+                is PeopleViewHolder -> { holder.bind(item as People, position) }
             }
         }
     }

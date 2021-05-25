@@ -35,6 +35,7 @@ class RoomCheckDialog(
         items?.let { peopleList ->
             binding.rvPeople.adapter = PeopleAdapter().also {
                 it.items = peopleList
+                it.fragmentVM = fragmentVM
             }
         }
 

@@ -12,5 +12,6 @@ data class Check(
 
 data class People(
     val name: String? = null,
-    val type: String? = null
+    val type: String? = null,
+    var check: Boolean = false
 )

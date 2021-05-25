@@ -8,8 +8,8 @@ import com.google.android.material.snackbar.Snackbar
 import java.text.SimpleDateFormat
 import java.util.*
 
-class NoticeViewHolder(private val binding: ViewholderNoticeBinding) : BaseViewHolder<Notice>(binding.root) {
-    override fun bind(item: Notice) {
+class NoticeViewHolder(private val binding: ViewholderNoticeBinding) : BaseViewHolder(binding.root) {
+    fun bind(item: Notice) {
         binding.vh = this
         binding.dto = item
     }

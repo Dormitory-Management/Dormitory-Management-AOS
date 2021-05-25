@@ -3,6 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="vm"
+            type="com.bowoon.android.dormitory_management_aos.fragments.check.viewmodels.CheckFragmentViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="306dp">
@@ -16,7 +22,8 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="13dp"
             android:background="?attr/selectableItemBackground"
-            android:text="닫기"
+            android:singleClick="@{() -> vm.completeCheck()}"
+            android:text="확인"
             android:textColor="@color/black"
             android:textSize="14dp"
             app:layout_constraintEnd_toEndOf="parent"
