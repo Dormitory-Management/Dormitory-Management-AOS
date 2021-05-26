@@ -46,6 +46,7 @@ class CheckFragment : DataBindingFragmentWithViewModel<FragmentCheckBinding, Che
         }
         fragmentVM.showRoomCheckDialog.observe(viewLifecycleOwner) {
             if (it != -1) {
+                fragmentVM.roomIndex = it
                 RoomCheckDialog(fragmentVM.checkList.value?.data?.get(it)?.people, fragmentVM).show(childFragmentManager, TAG)
             }
         }

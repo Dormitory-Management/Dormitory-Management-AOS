@@ -40,6 +40,7 @@ class RoomCheckDialog(
         }
 
         binding.tvBottomSheetDialogClose.setOnClickListener {
+            fragmentVM?.completeCheck()
             dismissAllowingStateLoss()
         }
     }

@@ -34,7 +34,7 @@ object ViewHolderFactory {
             when (holder) {
                 is NoticeViewHolder -> { holder.bind(item as Notice) }
                 is CheckViewHolder -> { holder.bind(item as Check) }
-                is PeopleViewHolder -> { holder.bind(item as People, position) }
+                is PeopleViewHolder -> { holder.bind(item as People) }
             }
         }
     }
