@@ -22,8 +22,6 @@ class PeopleViewHolder(
             binding.ivProfileImage.setImageResource(R.mipmap.ic_launcher)
         }
 
-        binding.cbPeopleCheck.isChecked = item.check
-
         binding.cbPeopleCheck.setOnClickListener {
             fragmentVM.checkList.value?.data?.get(fragmentVM.roomIndex)?.people?.get(adapterPosition)?.check = binding.cbPeopleCheck.isChecked
         }

@@ -17,7 +17,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:singleClick="@{() -> vh.itemClick()}">
+        android:singleClick="@{() -> vh.itemClick(dto)}">
 
         <TextView
             android:layout_width="wrap_content"

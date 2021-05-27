@@ -17,7 +17,5 @@ class CheckViewHolder(
 
     fun itemClick() {
         fragmentVM.showRoomCheckDialog.shotOne(adapterPosition)
-//        fragmentVM.showRoomCheckDialog.value = adapterPosition
-//        fragmentVM.showRoomCheckDialog.postValue(-1)
     }
 }

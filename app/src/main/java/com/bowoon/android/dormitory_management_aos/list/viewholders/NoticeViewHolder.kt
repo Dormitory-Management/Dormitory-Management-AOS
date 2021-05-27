@@ -14,8 +14,8 @@ class NoticeViewHolder(private val binding: ViewholderNoticeBinding) : BaseViewH
         binding.dto = item
     }
 
-    fun itemClick() {
-        Snackbar.make(binding.root, "itemClick $adapterPosition", Snackbar.LENGTH_SHORT).apply {
+    fun itemClick(item: Notice) {
+        Snackbar.make(binding.root, item.content ?: "", Snackbar.LENGTH_SHORT).apply {
             anchorView = binding.root.rootView.findViewById(R.id.bnv_bottom_footer)
         }.show()
     }
