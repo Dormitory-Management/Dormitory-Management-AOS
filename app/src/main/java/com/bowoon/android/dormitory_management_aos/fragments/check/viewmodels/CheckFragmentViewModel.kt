@@ -8,18 +8,17 @@ import com.bowoon.android.dormitory_management_aos.models.Check
 import com.bowoon.android.dormitory_management_aos.models.CheckData
 
 class CheckFragmentViewModel : BaseViewModel() {
-    val checkList = MutableLiveData<CheckData>(CheckData())
+    val checkList = MutableLiveData(CheckData())
     val showRoomCheckDialog = MutableLiveData<Int>()
     var roomIndex = -1
 
     fun completeCheck() {
-        val completeRoom = CheckData().apply {
-            data = mutableListOf(Check().apply {
-                id = checkList.value?.data?.get(roomIndex)?.id
-                roomNumber = checkList.value?.data?.get(roomIndex)?.roomNumber
-                people = checkList.value?.data?.get(roomIndex)?.people
-            })
-        }
+        val completeRoom = CheckData(
+            mutableListOf(Check(checkList.value?.data?.get(roomIndex)?.id,
+                checkList.value?.data?.get(roomIndex)?.roomNumber,
+                checkList.value?.data?.get(roomIndex)?.people)
+            )
+        )
 
         val jsonString = gson?.toJson(completeRoom)
         Log.d("completeRoom", jsonString ?: "Gson is null!")
