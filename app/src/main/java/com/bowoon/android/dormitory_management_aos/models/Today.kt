@@ -5,5 +5,12 @@ data class TodayData(
 )
 
 data class Today(
-    val today: String? = null
+    val title: String? = null,
+    val time: String? = null,
+    val todayList: MutableList<TodayList>? = null
+)
+
+data class TodayList(
+    val title: String? = null,
+    val content: String? = null
 )

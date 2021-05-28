@@ -1,14 +1,19 @@
 package com.bowoon.android.dormitory_management_aos.fragments.home
 
+import android.graphics.Rect
 import android.os.Bundle
 import android.view.View
+import androidx.recyclerview.widget.RecyclerView
+import com.bowoon.android.common.utils.dp
 import com.bowoon.android.common.utils.readAssetsFile
 import com.bowoon.android.dormitory_management_aos.R
 import com.bowoon.android.dormitory_management_aos.activities.viewmodels.MainActivityViewModel
+import com.bowoon.android.dormitory_management_aos.adapter.TodayAdapter
 import com.bowoon.android.dormitory_management_aos.base.DataBindingFragmentWithViewModel
 import com.bowoon.android.dormitory_management_aos.databinding.FragmentMainBinding
 import com.bowoon.android.dormitory_management_aos.fragments.home.viewmodels.HomeFragmentViewModel
 import com.bowoon.android.dormitory_management_aos.models.TodayData
+import com.bowoon.android.dormitory_management_aos.models.TodayList
 
 class HomeFragment : DataBindingFragmentWithViewModel<FragmentMainBinding, HomeFragmentViewModel, MainActivityViewModel>
         (R.layout.fragment_main, HomeFragmentViewModel::class.java, MainActivityViewModel::class.java) {
@@ -37,11 +42,40 @@ class HomeFragment : DataBindingFragmentWithViewModel<FragmentMainBinding, HomeF
 
     override fun initLiveData() {
         fragmentVM.today.observe(viewLifecycleOwner) {
-            binding.tvTodayCheck.text = it.data?.today ?: "오늘의 공지 없음"
+            (binding.rvMain.adapter as? TodayAdapter)?.let { adapter->
+                val mainItems = mutableListOf(TodayList(it.data?.title, it.data?.time))
+                mainItems.addAll(it.data?.todayList ?: mutableListOf())
+                adapter.items = mainItems
+                adapter.notifyDataSetChanged()
+            }
         }
     }
 
     override fun initBinding() {
-
+        binding.rvMain.apply {
+            adapter = TodayAdapter().also {
+                it.fragmentVM = fragmentVM
+            }
+            addItemDecoration(object : RecyclerView.ItemDecoration() {
+                val margin = 10.dp
+                override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
+                    val position = parent.getChildLayoutPosition(view)
+                    val size = parent.adapter?.itemCount ?: 0
+                    if (position in 0 .. size) {
+                        when (position) {
+                            fragmentVM.today.value?.data?.todayList?.lastIndex -> {
+                                outRect.bottom = margin
+                            }
+                            else -> {
+                                outRect.bottom = 0
+                            }
+                        }
+                        outRect.top = margin
+                        outRect.left = margin
+                        outRect.right = margin
+                    }
+                }
+            })
+        }
     }
 }
