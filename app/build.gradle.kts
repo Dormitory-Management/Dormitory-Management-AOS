@@ -62,11 +62,13 @@ android {
             dimension = "version"
             applicationIdSuffix = ".demo"
             versionNameSuffix = "-demo"
+            buildConfigField("String", "INIT_API", "\"http://localhost:8000/\"")
         }
         create("full") {
             dimension = "version"
             applicationIdSuffix = ".full"
             versionNameSuffix = "-full"
+            buildConfigField("String", "INIT_API", "\"http://localhost:8000/\"")
         }
     }
     sourceSets {

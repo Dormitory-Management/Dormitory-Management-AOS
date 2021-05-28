@@ -18,9 +18,25 @@ android {
     }
 
     buildTypes {
+        getByName("debug") {
+            isDebuggable = true
+        }
         getByName("release") {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+        }
+    }
+    flavorDimensions("version")
+    productFlavors {
+        create("demo") {
+            dimension = "version"
+            versionNameSuffix = "-demo"
+            buildConfigField("String", "INIT_API", "\"http://localhost:8000/\"")
+        }
+        create("full") {
+            dimension = "version"
+            versionNameSuffix = "-full"
+            buildConfigField("String", "INIT_API", "\"http://localhost:8000/\"")
         }
     }
     compileOptions {
@@ -41,6 +57,9 @@ dependencies {
     implementation(Dependencies.Okhttp.loggingInterceptor)
 
     implementation(Dependencies.Retrofit2.retrofit)
+    implementation(Dependencies.Retrofit2.converterGson)
+    implementation(Dependencies.Retrofit2.adapterRxjava)
+    implementation(Dependencies.Google.gson)
 
     implementation(Dependencies.Rx.java)
 }
