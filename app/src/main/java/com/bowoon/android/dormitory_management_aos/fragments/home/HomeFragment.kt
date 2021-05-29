@@ -48,7 +48,7 @@ class HomeFragment : DataBindingFragmentWithViewModel<FragmentMainBinding, HomeF
                     fragmentVM.today.value = it
                 },
                 {
-                    Log.e("HomeFragment.initSampleData", it.message ?: "something wrong")
+                    Log.e(it.message ?: "something wrong")
                 }
             )
         } else {

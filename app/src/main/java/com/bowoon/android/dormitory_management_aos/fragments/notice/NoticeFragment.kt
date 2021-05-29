@@ -44,7 +44,7 @@ class NoticeFragment : DataBindingFragmentWithViewModel<FragmentNoticeBinding, N
                     fragmentVM.noticeList.value = it
                 },
                 {
-                    Log.e("NoticeFragment.initSampleData", it.message ?: "something wrong")
+                    Log.e(it.message ?: "something wrong")
                 }
             )
         } else {

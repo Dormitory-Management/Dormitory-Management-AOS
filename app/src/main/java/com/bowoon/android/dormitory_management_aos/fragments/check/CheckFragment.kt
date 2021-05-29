@@ -45,7 +45,7 @@ class CheckFragment : DataBindingFragmentWithViewModel<FragmentCheckBinding, Che
                     fragmentVM.checkList.value = it
                 },
                 {
-                    Log.e("CheckFragment.initSampleData", it.message ?: "something wrong")
+                    Log.e(it.message ?: "something wrong")
                 }
             )
         } else {
