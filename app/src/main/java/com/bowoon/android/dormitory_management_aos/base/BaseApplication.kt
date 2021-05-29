@@ -19,3 +19,6 @@ class BaseApplication : Application() {
 var navGraphIds: NavigationGraphImpl? = null
 var dormitoryApi: DormitoryAPI? = null
 var gson: Gson? = null
+
+// load test data
+const val networkConnection = false

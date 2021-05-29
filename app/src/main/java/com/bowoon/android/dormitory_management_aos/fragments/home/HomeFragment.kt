@@ -4,12 +4,15 @@ import android.graphics.Rect
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+import com.bowoon.android.common.log.Log
 import com.bowoon.android.common.utils.dp
 import com.bowoon.android.common.utils.readAssetsFile
 import com.bowoon.android.dormitory_management_aos.R
 import com.bowoon.android.dormitory_management_aos.activities.viewmodels.MainActivityViewModel
 import com.bowoon.android.dormitory_management_aos.adapter.TodayAdapter
 import com.bowoon.android.dormitory_management_aos.base.DataBindingFragmentWithViewModel
+import com.bowoon.android.dormitory_management_aos.base.dormitoryApi
+import com.bowoon.android.dormitory_management_aos.base.networkConnection
 import com.bowoon.android.dormitory_management_aos.databinding.FragmentMainBinding
 import com.bowoon.android.dormitory_management_aos.fragments.home.viewmodels.HomeFragmentViewModel
 import com.bowoon.android.dormitory_management_aos.models.TodayData
@@ -37,7 +40,20 @@ class HomeFragment : DataBindingFragmentWithViewModel<FragmentMainBinding, HomeF
     }
 
     private fun initSampleData() {
-        fragmentVM.today.value = requireContext().readAssetsFile<TodayData>("today.json")
+        if (networkConnection) {
+            dormitoryApi?.getToday(
+                fragmentVM.compositeDisposable,
+                mapOf(),
+                {
+                    fragmentVM.today.value = it
+                },
+                {
+                    Log.e("HomeFragment.initSampleData", it.message ?: "something wrong")
+                }
+            )
+        } else {
+            fragmentVM.today.value = requireContext().readAssetsFile<TodayData>("today.json")
+        }
     }
 
     override fun initLiveData() {

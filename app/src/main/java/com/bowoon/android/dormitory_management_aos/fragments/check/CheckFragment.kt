@@ -2,11 +2,14 @@ package com.bowoon.android.dormitory_management_aos.fragments.check
 
 import android.os.Bundle
 import android.view.View
+import com.bowoon.android.common.log.Log
 import com.bowoon.android.common.utils.readAssetsFile
 import com.bowoon.android.dormitory_management_aos.R
 import com.bowoon.android.dormitory_management_aos.activities.viewmodels.MainActivityViewModel
 import com.bowoon.android.dormitory_management_aos.adapter.CheckAdapter
 import com.bowoon.android.dormitory_management_aos.base.DataBindingFragmentWithViewModel
+import com.bowoon.android.dormitory_management_aos.base.dormitoryApi
+import com.bowoon.android.dormitory_management_aos.base.networkConnection
 import com.bowoon.android.dormitory_management_aos.databinding.FragmentCheckBinding
 import com.bowoon.android.dormitory_management_aos.dialogs.RoomCheckDialog
 import com.bowoon.android.dormitory_management_aos.fragments.check.viewmodels.CheckFragmentViewModel
@@ -34,7 +37,20 @@ class CheckFragment : DataBindingFragmentWithViewModel<FragmentCheckBinding, Che
     }
 
     private fun initSampleData() {
-        fragmentVM.checkList.value = requireContext().readAssetsFile<CheckData>("check.json")
+        if (networkConnection) {
+            dormitoryApi?.getCheck(
+                fragmentVM.compositeDisposable,
+                mapOf(),
+                {
+                    fragmentVM.checkList.value = it
+                },
+                {
+                    Log.e("CheckFragment.initSampleData", it.message ?: "something wrong")
+                }
+            )
+        } else {
+            fragmentVM.checkList.value = requireContext().readAssetsFile<CheckData>("check.json")
+        }
     }
 
     override fun initLiveData() {
