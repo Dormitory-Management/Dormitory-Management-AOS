@@ -11,7 +11,7 @@
 
         <variable
             name="activityVM"
-            type="com.bowoon.android.dormitory_management_aos.activities.viewmodels.MainActivityViewModel" />
+            type="com.bowoon.android.dormitory_management_aos.activities.main.viewmodel.MainActivityViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

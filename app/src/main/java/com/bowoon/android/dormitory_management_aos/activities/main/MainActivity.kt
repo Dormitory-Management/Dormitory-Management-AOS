@@ -1,9 +1,9 @@
-package com.bowoon.android.dormitory_management_aos.activities
+package com.bowoon.android.dormitory_management_aos.activities.main
 
 import android.os.Bundle
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.bowoon.android.dormitory_management_aos.R
-import com.bowoon.android.dormitory_management_aos.activities.viewmodels.MainActivityViewModel
+import com.bowoon.android.dormitory_management_aos.activities.main.viewmodel.MainActivityViewModel
 import com.bowoon.android.dormitory_management_aos.base.DataBindingActivityWithViewModel
 import com.bowoon.android.dormitory_management_aos.base.navGraphIds
 import com.bowoon.android.dormitory_management_aos.component.navigation.setupWithNavController

@@ -8,7 +8,7 @@ import com.bowoon.android.common.log.Log
 import com.bowoon.android.common.utils.dp
 import com.bowoon.android.common.utils.readAssetsFile
 import com.bowoon.android.dormitory_management_aos.R
-import com.bowoon.android.dormitory_management_aos.activities.viewmodels.MainActivityViewModel
+import com.bowoon.android.dormitory_management_aos.activities.main.viewmodel.MainActivityViewModel
 import com.bowoon.android.dormitory_management_aos.adapter.TodayAdapter
 import com.bowoon.android.dormitory_management_aos.base.DataBindingFragmentWithViewModel
 import com.bowoon.android.dormitory_management_aos.base.dormitoryApi

@@ -1,4 +1,4 @@
-package com.bowoon.android.dormitory_management_aos.activities.viewmodels
+package com.bowoon.android.dormitory_management_aos.activities.main.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.NavController
