@@ -66,7 +66,7 @@ object Log {
     private fun tag(): String {
         Thread.currentThread().stackTrace[4]?.let {
             val className = it.className.substring(it.className.lastIndexOf(".") + 1)
-            return "$className.${it.methodName}[${it.fileName}:${it.lineNumber}]"
+            return "$className.${it.methodName}(${it.fileName}:${it.lineNumber})"
         }
         return "Empty Tag String"
     }
