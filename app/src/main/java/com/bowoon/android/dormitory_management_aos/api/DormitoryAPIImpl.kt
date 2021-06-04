@@ -8,7 +8,7 @@ import io.reactivex.rxjava3.kotlin.addTo
 class DormitoryAPIImpl : DormitoryAPI {
     override fun doLogin(
         compositeDisposable: CompositeDisposable,
-        params: Map<String, String>,
+        params: Map<String, String>?,
         body: LoginData,
         onSuccess: ((LoginResponse) -> Unit)?,
         onError: ((Throwable) -> Unit)?
@@ -23,7 +23,7 @@ class DormitoryAPIImpl : DormitoryAPI {
 
     override fun getToday(
         compositeDisposable: CompositeDisposable,
-        params: Map<String, String>,
+        params: Map<String, String>?,
         onSuccess: ((TodayData) -> Unit)?,
         onError: ((Throwable) -> Unit)?
     ) {
@@ -37,7 +37,7 @@ class DormitoryAPIImpl : DormitoryAPI {
 
     override fun getNotice(
         compositeDisposable: CompositeDisposable,
-        params: Map<String, String>,
+        params: Map<String, String>?,
         onSuccess: ((NoticeData) -> Unit)?,
         onError: ((Throwable) -> Unit)?
     ) {
@@ -51,11 +51,26 @@ class DormitoryAPIImpl : DormitoryAPI {
 
     override fun getCheck(
         compositeDisposable: CompositeDisposable,
-        params: Map<String, String>,
+        params: Map<String, String>?,
         onSuccess: ((CheckData) -> Unit)?,
         onError: ((Throwable) -> Unit)?
     ) {
-        Api.dormitory.getCheck("check.json", params)
+        Api.dormitory.getCheck("check.json", params ?: mapOf())
+            .rxRunOnUiThread()
+            .subscribe(
+                { onSuccess?.invoke(it) },
+                { e -> onError?.invoke(e) }
+            ).addTo(compositeDisposable)
+    }
+
+    override fun sendRoomCheck(
+        compositeDisposable: CompositeDisposable,
+        params: Map<String, String>?,
+        body: CheckData,
+        onSuccess: ((RoomCheckResponse) -> Unit)?,
+        onError: ((Throwable) -> Unit)?
+    ) {
+        Api.dormitory.sendRoomCheck("", body)
             .rxRunOnUiThread()
             .subscribe(
                 { onSuccess?.invoke(it) },

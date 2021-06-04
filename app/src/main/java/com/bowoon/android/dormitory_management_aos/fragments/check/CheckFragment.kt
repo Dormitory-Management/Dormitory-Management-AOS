@@ -5,6 +5,7 @@ import android.view.View
 import androidx.core.view.isVisible
 import com.bowoon.android.common.log.Log
 import com.bowoon.android.common.utils.readAssetsFile
+import com.bowoon.android.common.utils.rxRunOnUiThread
 import com.bowoon.android.dormitory_management_aos.R
 import com.bowoon.android.dormitory_management_aos.activities.main.viewmodel.MainActivityViewModel
 import com.bowoon.android.dormitory_management_aos.adapter.CheckAdapter
@@ -15,6 +16,8 @@ import com.bowoon.android.dormitory_management_aos.databinding.FragmentCheckBind
 import com.bowoon.android.dormitory_management_aos.dialogs.RoomCheckDialog
 import com.bowoon.android.dormitory_management_aos.fragments.check.viewmodels.CheckFragmentViewModel
 import com.bowoon.android.dormitory_management_aos.models.CheckData
+import io.reactivex.rxjava3.core.Single
+import io.reactivex.rxjava3.kotlin.toObservable
 
 class CheckFragment : DataBindingFragmentWithViewModel<FragmentCheckBinding, CheckFragmentViewModel, MainActivityViewModel>
     (R.layout.fragment_check, CheckFragmentViewModel::class.java, MainActivityViewModel::class.java) {
@@ -59,14 +62,26 @@ class CheckFragment : DataBindingFragmentWithViewModel<FragmentCheckBinding, Che
                 }
             )
         } else {
-            fragmentVM.checkList.value = requireContext().readAssetsFile<CheckData>("check.json")
-            if (fragmentVM.checkList.value?.isActive == false) {
-                binding.tvErrorPage.isVisible = true
-                binding.rvCheck.isVisible = false
-            } else {
-                binding.tvErrorPage.isVisible = false
-                binding.rvCheck.isVisible = true
-            }
+            Single
+                .just(requireContext().readAssetsFile<CheckData>("check.json"))
+                .rxRunOnUiThread()
+                .subscribe(
+                    {
+                        fragmentVM.checkList.value = requireContext().readAssetsFile<CheckData>("check.json")
+                        if (fragmentVM.checkList.value?.isActive == false) {
+                            binding.tvErrorPage.isVisible = true
+                            binding.rvCheck.isVisible = false
+                        } else {
+                            binding.tvErrorPage.isVisible = false
+                            binding.rvCheck.isVisible = true
+                        }
+                    },
+                    { e ->
+                        Log.e(e.message ?: "something wrong")
+                        binding.tvErrorPage.isVisible = true
+                        binding.rvCheck.isVisible = false
+                    }
+                )
         }
     }
 

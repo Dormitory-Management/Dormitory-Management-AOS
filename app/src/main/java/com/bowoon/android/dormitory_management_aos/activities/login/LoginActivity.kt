@@ -2,6 +2,7 @@ package com.bowoon.android.dormitory_management_aos.activities.login
 
 import android.content.Intent
 import android.os.Bundle
+import com.bowoon.android.common.log.Log
 import com.bowoon.android.common.utils.showShortSnackbar
 import com.bowoon.android.dormitory_management_aos.R
 import com.bowoon.android.dormitory_management_aos.activities.login.viewmodel.LoginActivityViewModel
@@ -39,7 +40,7 @@ class LoginActivity : DataBindingActivityWithViewModel<ActivityLoginBinding, Log
             val id = binding.etUserId.text.toString()
             val password = binding.etUserPassword.text.toString()
 
-            if (!id.isNullOrEmpty() && !password.isNullOrEmpty()) {
+            if (id.isNotEmpty() && password.isNotEmpty()) {
                 activityVM.doLogin(id,
                     password,
                     {
@@ -47,7 +48,10 @@ class LoginActivity : DataBindingActivityWithViewModel<ActivityLoginBinding, Log
                         startActivity(Intent(this, MainActivity::class.java))
                         finish()
                     },
-                    {}
+                    {
+                        Log.e(it.message ?: "something wrong")
+                        this.showShortSnackbar(binding.root, "로그인에 실패했습니다.")
+                    }
                 )
             } else {
                 this.showShortSnackbar(binding.root, "Check to ID and Password")

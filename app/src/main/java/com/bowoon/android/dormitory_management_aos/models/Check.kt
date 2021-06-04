@@ -17,3 +17,8 @@ data class People(
     val type: String? = null,
     var check: Boolean = false
 )
+
+data class RoomCheckResponse(
+    val state: Int? = null,
+    val message: String? = null
+)

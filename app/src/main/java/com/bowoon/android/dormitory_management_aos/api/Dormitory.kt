@@ -16,4 +16,7 @@ interface Dormitory {
 
     @GET("/check")
     fun getCheck(@Url url: String, @QueryMap params: Map<String, String>): Single<CheckData>
+
+    @POST("/roomCheck")
+    fun sendRoomCheck(@Url url: String, @Body checkData: CheckData): Single<RoomCheckResponse>
 }

@@ -1,9 +1,10 @@
 package com.bowoon.android.dormitory_management_aos.fragments.check.viewmodels
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import com.bowoon.android.common.log.Log
 import com.bowoon.android.dormitory_management_aos.base.BaseViewModel
-import com.bowoon.android.dormitory_management_aos.base.gson
+import com.bowoon.android.dormitory_management_aos.base.dormitoryApi
+import com.bowoon.android.dormitory_management_aos.base.networkConnection
 import com.bowoon.android.dormitory_management_aos.models.Check
 import com.bowoon.android.dormitory_management_aos.models.CheckData
 
@@ -14,7 +15,8 @@ class CheckFragmentViewModel : BaseViewModel() {
 
     fun completeCheck() {
         val completeRoom = CheckData(
-            data = mutableListOf(
+            checkList.value?.isActive,
+            mutableListOf(
                 Check(
                     checkList.value?.data?.get(roomIndex)?.id,
                     checkList.value?.data?.get(roomIndex)?.roomNumber,
@@ -23,7 +25,18 @@ class CheckFragmentViewModel : BaseViewModel() {
             )
         )
 
-        val jsonString = gson?.toJson(completeRoom)
-        Log.d("completeRoom", jsonString ?: "Gson is null!")
+        if (networkConnection) {
+            dormitoryApi?.sendRoomCheck(
+                compositeDisposable,
+                null,
+                completeRoom,
+                {
+                    Log.d("${it.state} ${it.message}")
+                },
+                { e ->
+                    Log.d(e.message ?: "something wrong")
+                }
+            )
+        }
     }
 }
