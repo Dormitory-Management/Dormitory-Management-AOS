@@ -7,5 +7,10 @@ data class LoginData(
 
 data class LoginResponse(
     val state: Int? = null,
-    val message: String? = null
+    val message: String? = null,
+    val userType: UserType? = null
 )
+
+enum class UserType {
+    STUDENT, ADMIN, WORKING_SCHOLARSHIP
+}

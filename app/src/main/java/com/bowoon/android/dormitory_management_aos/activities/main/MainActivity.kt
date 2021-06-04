@@ -6,8 +6,10 @@ import com.bowoon.android.dormitory_management_aos.R
 import com.bowoon.android.dormitory_management_aos.activities.main.viewmodel.MainActivityViewModel
 import com.bowoon.android.dormitory_management_aos.base.DataBindingActivityWithViewModel
 import com.bowoon.android.dormitory_management_aos.base.navGraphIds
+import com.bowoon.android.dormitory_management_aos.base.userType
 import com.bowoon.android.dormitory_management_aos.component.navigation.setupWithNavController
 import com.bowoon.android.dormitory_management_aos.databinding.ActivityMainBinding
+import com.bowoon.android.dormitory_management_aos.models.UserType
 
 class MainActivity : DataBindingActivityWithViewModel<ActivityMainBinding, MainActivityViewModel>
     (R.layout.activity_main, MainActivityViewModel::class.java) {
@@ -38,6 +40,12 @@ class MainActivity : DataBindingActivityWithViewModel<ActivityMainBinding, MainA
 
     override fun initBinding() {
         binding.bnvBottomFooter.setupWithNavController(navGraphIds?.getGraphList() ?: mutableListOf(), supportFragmentManager, binding.fcvMainView.id, intent)
+
+        if (userType == UserType.ADMIN || userType == UserType.WORKING_SCHOLARSHIP) {
+            binding.bnvBottomFooter.inflateMenu(R.menu.admin_bottom_footer)
+        } else {
+            binding.bnvBottomFooter.inflateMenu(R.menu.normal_bottom_footer)
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
