@@ -55,7 +55,7 @@ class DormitoryAPIImpl : DormitoryAPI {
         onSuccess: ((CheckData) -> Unit)?,
         onError: ((Throwable) -> Unit)?
     ) {
-        Api.dormitory.getCheck("check.json")
+        Api.dormitory.getCheck("check.json", params)
             .rxRunOnUiThread()
             .subscribe(
                 { onSuccess?.invoke(it) },

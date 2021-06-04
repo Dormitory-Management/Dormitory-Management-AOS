@@ -14,9 +14,12 @@ class CheckFragmentViewModel : BaseViewModel() {
 
     fun completeCheck() {
         val completeRoom = CheckData(
-            mutableListOf(Check(checkList.value?.data?.get(roomIndex)?.id,
-                checkList.value?.data?.get(roomIndex)?.roomNumber,
-                checkList.value?.data?.get(roomIndex)?.people)
+            data = mutableListOf(
+                Check(
+                    checkList.value?.data?.get(roomIndex)?.id,
+                    checkList.value?.data?.get(roomIndex)?.roomNumber,
+                    checkList.value?.data?.get(roomIndex)?.people
+                )
             )
         )
 

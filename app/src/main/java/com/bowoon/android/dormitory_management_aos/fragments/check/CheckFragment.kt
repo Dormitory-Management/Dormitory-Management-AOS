@@ -2,6 +2,7 @@ package com.bowoon.android.dormitory_management_aos.fragments.check
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import com.bowoon.android.common.log.Log
 import com.bowoon.android.common.utils.readAssetsFile
 import com.bowoon.android.dormitory_management_aos.R
@@ -40,16 +41,32 @@ class CheckFragment : DataBindingFragmentWithViewModel<FragmentCheckBinding, Che
         if (networkConnection) {
             dormitoryApi?.getCheck(
                 fragmentVM.compositeDisposable,
-                mapOf(),
+                mapOf("currentTime" to "${System.currentTimeMillis()}"),
                 {
-                    fragmentVM.checkList.value = it
+                    if (it.isActive == false) {
+                        binding.tvErrorPage.isVisible = true
+                        binding.rvCheck.isVisible = false
+                    } else {
+                        binding.tvErrorPage.isVisible = false
+                        binding.rvCheck.isVisible = true
+                        fragmentVM.checkList.value = it
+                    }
                 },
                 {
                     Log.e(it.message ?: "something wrong")
+                    binding.tvErrorPage.isVisible = true
+                    binding.rvCheck.isVisible = false
                 }
             )
         } else {
             fragmentVM.checkList.value = requireContext().readAssetsFile<CheckData>("check.json")
+            if (fragmentVM.checkList.value?.isActive == false) {
+                binding.tvErrorPage.isVisible = true
+                binding.rvCheck.isVisible = false
+            } else {
+                binding.tvErrorPage.isVisible = false
+                binding.rvCheck.isVisible = true
+            }
         }
     }
 
