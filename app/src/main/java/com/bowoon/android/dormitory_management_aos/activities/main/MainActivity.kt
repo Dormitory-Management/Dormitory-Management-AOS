@@ -39,13 +39,13 @@ class MainActivity : DataBindingActivityWithViewModel<ActivityMainBinding, MainA
     }
 
     override fun initBinding() {
-        binding.bnvBottomFooter.setupWithNavController(navGraphIds?.getGraphList() ?: mutableListOf(), supportFragmentManager, binding.fcvMainView.id, intent)
-
         if (userType == UserType.ADMIN || userType == UserType.WORKING_SCHOLARSHIP) {
             binding.bnvBottomFooter.inflateMenu(R.menu.admin_bottom_footer)
         } else {
             binding.bnvBottomFooter.inflateMenu(R.menu.normal_bottom_footer)
         }
+
+        binding.bnvBottomFooter.setupWithNavController(navGraphIds?.getGraphList() ?: mutableListOf(), supportFragmentManager, binding.fcvMainView.id, intent)
     }
 
     override fun onSupportNavigateUp(): Boolean {
