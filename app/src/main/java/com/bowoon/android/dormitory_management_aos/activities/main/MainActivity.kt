@@ -10,7 +10,9 @@ import com.bowoon.android.dormitory_management_aos.base.userType
 import com.bowoon.android.dormitory_management_aos.component.navigation.setupWithNavController
 import com.bowoon.android.dormitory_management_aos.databinding.ActivityMainBinding
 import com.bowoon.android.dormitory_management_aos.models.UserType
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : DataBindingActivityWithViewModel<ActivityMainBinding, MainActivityViewModel>
     (R.layout.activity_main, MainActivityViewModel::class.java) {
 

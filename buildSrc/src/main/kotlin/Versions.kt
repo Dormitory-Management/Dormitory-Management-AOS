@@ -13,18 +13,18 @@ object Versions {
     }
 
     object Plugins {
-        const val gradle = "4.2.1"
-        const val kotlin = "1.5.0"
-        const val appcompat = "1.2.0"
-        const val junit = "4.13.2"
-        const val junitExt = "1.1.2"
-        const val espressoCore = "3.3.0"
-        const val coreKtx = "1.3.2"
+        const val gradleVersion = "4.2.1"
+        const val kotlinVersion = "1.5.0"
+        const val appcompatVersion = "1.2.0"
+        const val junitVersion = "4.13.2"
+        const val junitExtVersion = "1.1.2"
+        const val espressoCoreVersion = "3.3.0"
+        const val coreKtxVersion = "1.3.2"
         const val lifecycleVersion = "2.2.0"
         const val viewModelVersion = "2.2.0"
         const val fragmentVersion = "1.2.5"
         const val navigationVersion = "2.3.2"
-        const val constraintLayout = "2.0.4"
+        const val constraintLayoutVersion = "2.0.4"
         const val swipeVersion = "1.1.0"
         const val materialVersion = "1.3.0"
         const val jsoupVersion = "1.12.1"
@@ -41,6 +41,7 @@ object Versions {
         const val rxkotlinVersion = "3.0.1"
         const val rxBindingVersion = "4.0.0"
         const val easyPermissionVersion = "3.0.0"
-        const val gson = "2.8.6"
+        const val gsonVersion = "2.8.6"
+        const val hiltVersion = "2.28-alpha"
     }
 }

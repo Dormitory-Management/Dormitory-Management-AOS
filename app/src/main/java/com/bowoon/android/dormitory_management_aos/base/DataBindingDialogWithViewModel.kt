@@ -12,7 +12,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 open class DataBindingDialogWithViewModel<V: ViewDataBinding, VM: ViewModel>(
     @LayoutRes private val layoutId: Int,
     private val viewModelClass: Class<VM>

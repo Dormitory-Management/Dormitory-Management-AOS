@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat
 
 plugins {
     id("com.android.application")
+    id("dagger.hilt.android.plugin")
     kotlin("android")
     kotlin("kapt")
 }
@@ -135,4 +136,7 @@ dependencies {
     implementation(Dependencies.Rx.android)
     implementation(Dependencies.Rx.kotlin)
     implementation(Dependencies.Rx.binding)
+
+    implementation(Dependencies.Hilt.hilt)
+    kapt(Dependencies.Hilt.hiltCompiler)
 }

@@ -20,8 +20,10 @@ import com.bowoon.android.dormitory_management_aos.models.LoginResponse
 import com.bowoon.android.dormitory_management_aos.models.TodayData
 import com.bowoon.android.dormitory_management_aos.models.TodayList
 import com.bowoon.android.dormitory_management_aos.models.UserType
+import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.rxjava3.core.Single
 
+@AndroidEntryPoint
 class HomeFragment : DataBindingFragmentWithViewModel<FragmentMainBinding, HomeFragmentViewModel, MainActivityViewModel>
         (R.layout.fragment_main, HomeFragmentViewModel::class.java, MainActivityViewModel::class.java) {
     companion object {

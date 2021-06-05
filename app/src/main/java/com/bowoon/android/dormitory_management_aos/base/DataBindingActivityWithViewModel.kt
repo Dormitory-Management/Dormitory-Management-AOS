@@ -1,6 +1,7 @@
 package com.bowoon.android.dormitory_management_aos.base
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.annotation.CallSuper
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
@@ -8,7 +9,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 abstract class DataBindingActivityWithViewModel<V: ViewDataBinding, VM: ViewModel>(
     @LayoutRes private val layout: Int,
     private val viewModelClass: Class<VM>

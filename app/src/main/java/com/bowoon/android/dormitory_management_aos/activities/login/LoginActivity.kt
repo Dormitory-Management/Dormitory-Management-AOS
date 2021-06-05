@@ -11,7 +11,9 @@ import com.bowoon.android.dormitory_management_aos.base.BaseApplication
 import com.bowoon.android.dormitory_management_aos.base.DataBindingActivityWithViewModel
 import com.bowoon.android.dormitory_management_aos.base.userType
 import com.bowoon.android.dormitory_management_aos.databinding.ActivityLoginBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LoginActivity : DataBindingActivityWithViewModel<ActivityLoginBinding, LoginActivityViewModel>
     (R.layout.activity_login, LoginActivityViewModel::class.java) {
     companion object {

@@ -6,7 +6,9 @@ import com.bowoon.android.dormitory_management_aos.api.DormitoryAPIImpl
 import com.bowoon.android.dormitory_management_aos.component.navigation.NavigationGraphImpl
 import com.bowoon.android.dormitory_management_aos.models.UserType
 import com.google.gson.Gson
+import dagger.hilt.android.HiltAndroidApp
 
+@HiltAndroidApp
 class BaseApplication : Application() {
     override fun onCreate() {
         super.onCreate()

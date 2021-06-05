@@ -16,9 +16,11 @@ import com.bowoon.android.dormitory_management_aos.databinding.FragmentCheckBind
 import com.bowoon.android.dormitory_management_aos.dialogs.RoomCheckDialog
 import com.bowoon.android.dormitory_management_aos.fragments.check.viewmodels.CheckFragmentViewModel
 import com.bowoon.android.dormitory_management_aos.models.CheckData
+import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.kotlin.toObservable
 
+@AndroidEntryPoint
 class CheckFragment : DataBindingFragmentWithViewModel<FragmentCheckBinding, CheckFragmentViewModel, MainActivityViewModel>
     (R.layout.fragment_check, CheckFragmentViewModel::class.java, MainActivityViewModel::class.java) {
     companion object {

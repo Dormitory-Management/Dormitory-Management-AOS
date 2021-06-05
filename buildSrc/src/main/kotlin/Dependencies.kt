@@ -1,19 +1,19 @@
 object Dependencies {
     /* Kotlin */
     object Kotlin {
-        const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.Plugins.kotlin}"
-        const val plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.Plugins.kotlin}"
-        const val gradle = "com.android.tools.build:gradle:${Versions.Plugins.gradle}"
+        const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.Plugins.kotlinVersion}"
+        const val plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.Plugins.kotlinVersion}"
+        const val gradle = "com.android.tools.build:gradle:${Versions.Plugins.gradleVersion}"
     }
 
     /* appcompat */
     object Appcompat {
-        const val appcompat = "androidx.appcompat:appcompat:${Versions.Plugins.appcompat}"
+        const val appcompat = "androidx.appcompat:appcompat:${Versions.Plugins.appcompatVersion}"
     }
 
     /* ktx */
     object Ktx {
-        const val core = "androidx.core:core-ktx:${Versions.Plugins.coreKtx}"
+        const val core = "androidx.core:core-ktx:${Versions.Plugins.coreKtxVersion}"
         // life cycle
         // 안드로이드에서 생명주기를 컨트롤 하기 위한 라이브러리
         // https://developer.android.com/jetpack/androidx/releases/lifecycle
@@ -38,7 +38,7 @@ object Dependencies {
 
     object Layout {
         /* constraintlayout */
-        const val constraintlayout = "androidx.constraintlayout:constraintlayout:${Versions.Plugins.constraintLayout}"
+        const val constraintlayout = "androidx.constraintlayout:constraintlayout:${Versions.Plugins.constraintLayoutVersion}"
 
         // swipe-to-refresh
         // 스와이프 하여 새로고침
@@ -55,7 +55,7 @@ object Dependencies {
     object Google {
         const val material = "com.google.android.material:material:${Versions.Plugins.materialVersion}"
         // gson
-        const val gson = "com.google.code.gson:gson:${Versions.Plugins.gson}"
+        const val gson = "com.google.code.gson:gson:${Versions.Plugins.gsonVersion}"
     }
 
     // tikxml
@@ -122,8 +122,14 @@ object Dependencies {
     }
 
     object Test {
-        const val junit = "junit:junit:${Versions.Plugins.junit}"
-        const val junitExt = "androidx.test.ext:junit:${Versions.Plugins.junitExt}"
-        const val espresso = "androidx.test.espresso:espresso-core:${Versions.Plugins.espressoCore}"
+        const val junit = "junit:junit:${Versions.Plugins.junitVersion}"
+        const val junitExt = "androidx.test.ext:junit:${Versions.Plugins.junitExtVersion}"
+        const val espresso = "androidx.test.espresso:espresso-core:${Versions.Plugins.espressoCoreVersion}"
+    }
+
+    object Hilt {
+        const val hiltPlugin = "com.google.dagger:hilt-android-gradle-plugin:${Versions.Plugins.hiltVersion}"
+        const val hilt = "com.google.dagger:hilt-android:${Versions.Plugins.hiltVersion}"
+        const val hiltCompiler = "com.google.dagger:hilt-android-compiler:${Versions.Plugins.hiltVersion}"
     }
 }
