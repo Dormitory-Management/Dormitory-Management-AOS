@@ -10,8 +10,8 @@ import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
-@AndroidEntryPoint
 abstract class DataBindingActivityWithViewModel<V: ViewDataBinding, VM: ViewModel>(
     @LayoutRes private val layout: Int,
     private val viewModelClass: Class<VM>

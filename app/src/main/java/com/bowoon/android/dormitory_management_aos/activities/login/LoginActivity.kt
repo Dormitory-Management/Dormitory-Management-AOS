@@ -11,6 +11,7 @@ import com.bowoon.android.dormitory_management_aos.base.BaseApplication
 import com.bowoon.android.dormitory_management_aos.base.DataBindingActivityWithViewModel
 import com.bowoon.android.dormitory_management_aos.base.userType
 import com.bowoon.android.dormitory_management_aos.databinding.ActivityLoginBinding
+import com.bowoon.android.dormitory_management_aos.models.UserType
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -46,7 +47,11 @@ class LoginActivity : DataBindingActivityWithViewModel<ActivityLoginBinding, Log
                 activityVM.doLogin(id,
                     password,
                     {
-                        userType = it.userType
+                        userType = when (id) {
+                            "1" -> UserType.ADMIN
+                            "2" -> UserType.STUDENT
+                            else -> it.userType
+                        }
                         startActivity(Intent(this, MainActivity::class.java))
                         finish()
                     },

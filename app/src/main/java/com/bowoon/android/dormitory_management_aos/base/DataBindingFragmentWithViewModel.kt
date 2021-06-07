@@ -12,8 +12,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
-@AndroidEntryPoint
 abstract class DataBindingFragmentWithViewModel<V : ViewDataBinding, VM : ViewModel, ACT_VM : ViewModel>(
     @LayoutRes private val layoutId: Int,
     private val fragmentVMClass: Class<VM>,
