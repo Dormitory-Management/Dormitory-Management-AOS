@@ -69,7 +69,7 @@ class CheckFragment : DataBindingFragmentWithViewModel<FragmentCheckBinding, Che
                 .rxRunOnUiThread()
                 .subscribe(
                     {
-                        fragmentVM.checkList.value = requireContext().readAssetsFile<CheckData>("check.json")
+                        fragmentVM.checkList.value = it
                         if (fragmentVM.checkList.value?.isActive == false) {
                             binding.tvErrorPage.isVisible = true
                             binding.rvCheck.isVisible = false
