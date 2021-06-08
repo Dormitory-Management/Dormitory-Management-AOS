@@ -36,7 +36,7 @@ interface DormitoryAPI {
     fun sendRoomCheck(
         compositeDisposable: CompositeDisposable,
         params: Map<String, String>? = null,
-        body: CheckData,
+        body: SendCheckData,
         onSuccess:((RoomCheckResponse) -> Unit)? = null,
         onError: ((Throwable) -> Unit)? = null
     )

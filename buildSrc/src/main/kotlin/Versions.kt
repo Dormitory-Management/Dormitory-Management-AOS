@@ -42,6 +42,6 @@ object Versions {
         const val rxBindingVersion = "4.0.0"
         const val easyPermissionVersion = "3.0.0"
         const val gsonVersion = "2.8.6"
-        const val hiltVersion = "2.28-alpha"
+        const val hiltVersion = "2.36"
     }
 }

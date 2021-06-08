@@ -66,7 +66,7 @@ class DormitoryAPIImpl : DormitoryAPI {
     override fun sendRoomCheck(
         compositeDisposable: CompositeDisposable,
         params: Map<String, String>?,
-        body: CheckData,
+        body: SendCheckData,
         onSuccess: ((RoomCheckResponse) -> Unit)?,
         onError: ((Throwable) -> Unit)?
     ) {

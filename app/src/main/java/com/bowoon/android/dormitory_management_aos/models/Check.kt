@@ -18,6 +18,10 @@ data class People(
     var check: Boolean = false
 )
 
+data class SendCheckData(
+    val data: MutableList<Check>? = null
+)
+
 data class RoomCheckResponse(
     val state: Int? = null,
     val message: String? = null

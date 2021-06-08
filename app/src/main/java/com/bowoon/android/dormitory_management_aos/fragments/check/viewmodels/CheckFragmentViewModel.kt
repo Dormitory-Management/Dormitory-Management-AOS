@@ -7,6 +7,7 @@ import com.bowoon.android.dormitory_management_aos.base.dormitoryApi
 import com.bowoon.android.dormitory_management_aos.base.networkConnection
 import com.bowoon.android.dormitory_management_aos.models.Check
 import com.bowoon.android.dormitory_management_aos.models.CheckData
+import com.bowoon.android.dormitory_management_aos.models.SendCheckData
 
 class CheckFragmentViewModel : BaseViewModel() {
     val checkList = MutableLiveData(CheckData())
@@ -14,8 +15,7 @@ class CheckFragmentViewModel : BaseViewModel() {
     var roomIndex = -1
 
     fun completeCheck() {
-        val completeRoom = CheckData(
-            checkList.value?.isActive,
+        val completeRoom = SendCheckData(
             mutableListOf(
                 Check(
                     checkList.value?.data?.get(roomIndex)?.id,
