@@ -1,7 +1,8 @@
 package com.bowoon.android.dormitory_management_aos.models
 
 data class CheckData(
-    val isActive: Boolean? = null,
+    val state: Int? = null,
+    val message: String? = null,
     val data: MutableList<Check>? = null
 )
 

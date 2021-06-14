@@ -18,7 +18,7 @@ import com.bowoon.android.dormitory_management_aos.fragments.check.viewmodels.Ch
 import com.bowoon.android.dormitory_management_aos.models.CheckData
 import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.rxjava3.core.Single
-import io.reactivex.rxjava3.kotlin.toObservable
+import java.net.HttpURLConnection
 
 @AndroidEntryPoint
 class CheckFragment : DataBindingFragmentWithViewModel<FragmentCheckBinding, CheckFragmentViewModel, MainActivityViewModel>
@@ -48,7 +48,7 @@ class CheckFragment : DataBindingFragmentWithViewModel<FragmentCheckBinding, Che
                 fragmentVM.compositeDisposable,
                 mapOf("currentTime" to "${System.currentTimeMillis()}"),
                 {
-                    if (it.isActive == false) {
+                    if (it.state == HttpURLConnection.HTTP_INTERNAL_ERROR) {
                         binding.tvErrorPage.isVisible = true
                         binding.rvCheck.isVisible = false
                     } else {
@@ -65,12 +65,12 @@ class CheckFragment : DataBindingFragmentWithViewModel<FragmentCheckBinding, Che
             )
         } else {
             Single
-                .just(requireContext().readAssetsFile<CheckData>("check.json"))
+                .just(requireContext().readAssetsFile<CheckData>("check_200.json"))
                 .rxRunOnUiThread()
                 .subscribe(
                     {
                         fragmentVM.checkList.value = it
-                        if (fragmentVM.checkList.value?.isActive == false) {
+                        if (fragmentVM.checkList.value?.state == HttpURLConnection.HTTP_INTERNAL_ERROR) {
                             binding.tvErrorPage.isVisible = true
                             binding.rvCheck.isVisible = false
                         } else {
