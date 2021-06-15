@@ -4,14 +4,14 @@ plugins {
 }
 
 android {
-    compileSdkVersion(Versions.Apps.compileSdk)
-    buildToolsVersion(Versions.Apps.buildToolVersion)
+    compileSdkVersion(Versions.Android.compileSdk)
+    buildToolsVersion(Versions.Android.buildToolVersion)
 
     defaultConfig {
-        minSdkVersion(Versions.Apps.minSdk)
-        targetSdkVersion(Versions.Apps.targetSdk)
-        versionCode = Versions.Apps.networkVersionCode
-        versionName = Versions.Apps.networkVersionName
+        minSdkVersion(Versions.Android.minSdk)
+        targetSdkVersion(Versions.Android.targetSdk)
+        versionCode = Versions.Android.networkVersionCode
+        versionName = Versions.Android.networkVersionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")

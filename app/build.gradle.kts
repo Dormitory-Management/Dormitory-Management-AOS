@@ -4,10 +4,11 @@ import java.util.Date
 import java.text.SimpleDateFormat
 
 plugins {
-    id("com.android.application")
-    id("dagger.hilt.android.plugin")
-    kotlin("android")
-    kotlin("kapt")
+    id(Versions.Plugins.androidApplication)
+    id(Versions.Plugins.hilt)
+    id(Versions.Plugins.libraryVersionChecker)
+    kotlin(Versions.Plugins.kotlinAndroid)
+    kotlin(Versions.Plugins.kotlinKapt)
 }
 
 val keystoreProperties = Properties().apply {
@@ -17,14 +18,14 @@ val keystoreProperties = Properties().apply {
 val formatter = SimpleDateFormat("yyyyMMdd_HH")
 
 android {
-    compileSdkVersion(Versions.Apps.compileSdk)
+    compileSdkVersion(Versions.Android.compileSdk)
 
     defaultConfig {
-        applicationId = "com.bowoon.android.dormitory_management_aos"
-        minSdkVersion(Versions.Apps.minSdk)
-        targetSdkVersion(Versions.Apps.targetSdk)
-        versionCode = Versions.Apps.versionCode
-        versionName = Versions.Apps.versionName
+        applicationId = Versions.Android.applicationID
+        minSdkVersion(Versions.Android.minSdk)
+        targetSdkVersion(Versions.Android.targetSdk)
+        versionCode = Versions.Android.versionCode
+        versionName = Versions.Android.versionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
@@ -112,9 +113,7 @@ dependencies {
     androidTestImplementation(Dependencies.Test.junitExt)
     androidTestImplementation(Dependencies.Test.espresso)
 
-    implementation(Dependencies.Ktx.lifecycle)
     kapt(Dependencies.Ktx.lifecycleCompiler)
-    implementation(Dependencies.Ktx.lifecycleExtension)
     implementation(Dependencies.Ktx.viewmodel)
     implementation(Dependencies.Ktx.fragment)
 
