@@ -9,8 +9,9 @@ import com.bowoon.android.common.utils.rxRunOnUiThread
 import com.bowoon.android.dormitory_management_aos.R
 import com.bowoon.android.dormitory_management_aos.activities.main.viewmodel.MainActivityViewModel
 import com.bowoon.android.dormitory_management_aos.adapter.CheckAdapter
+import com.bowoon.android.dormitory_management_aos.api.DormitoryAPI
+import com.bowoon.android.dormitory_management_aos.api.DormitoryAPIImpl
 import com.bowoon.android.dormitory_management_aos.base.DataBindingFragmentWithViewModel
-import com.bowoon.android.dormitory_management_aos.base.dormitoryApi
 import com.bowoon.android.dormitory_management_aos.base.networkConnection
 import com.bowoon.android.dormitory_management_aos.databinding.FragmentCheckBinding
 import com.bowoon.android.dormitory_management_aos.dialogs.RoomCheckDialog
@@ -19,6 +20,7 @@ import com.bowoon.android.dormitory_management_aos.models.CheckData
 import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.rxjava3.core.Single
 import java.net.HttpURLConnection
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class CheckFragment : DataBindingFragmentWithViewModel<FragmentCheckBinding, CheckFragmentViewModel, MainActivityViewModel>
@@ -26,6 +28,9 @@ class CheckFragment : DataBindingFragmentWithViewModel<FragmentCheckBinding, Che
     companion object {
         val TAG = CheckFragment::class.simpleName ?: "CheckFragment"
     }
+
+    @Inject
+    lateinit var dormitoryApi: DormitoryAPIImpl
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -44,7 +49,7 @@ class CheckFragment : DataBindingFragmentWithViewModel<FragmentCheckBinding, Che
 
     private fun initSampleData() {
         if (networkConnection) {
-            dormitoryApi?.getCheck(
+            dormitoryApi.getCheck(
                 fragmentVM.compositeDisposable,
                 mapOf("currentTime" to "${System.currentTimeMillis()}"),
                 {

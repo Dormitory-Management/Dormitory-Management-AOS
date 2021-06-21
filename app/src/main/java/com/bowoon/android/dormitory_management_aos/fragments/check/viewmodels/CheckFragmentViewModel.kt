@@ -1,15 +1,22 @@
 package com.bowoon.android.dormitory_management_aos.fragments.check.viewmodels
 
+import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.MutableLiveData
 import com.bowoon.android.common.log.Log
+import com.bowoon.android.dormitory_management_aos.api.DormitoryAPI
+import com.bowoon.android.dormitory_management_aos.api.DormitoryAPIImpl
 import com.bowoon.android.dormitory_management_aos.base.BaseViewModel
-import com.bowoon.android.dormitory_management_aos.base.dormitoryApi
 import com.bowoon.android.dormitory_management_aos.base.networkConnection
 import com.bowoon.android.dormitory_management_aos.models.Check
 import com.bowoon.android.dormitory_management_aos.models.CheckData
 import com.bowoon.android.dormitory_management_aos.models.SendCheckData
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class CheckFragmentViewModel : BaseViewModel() {
+@HiltViewModel
+class CheckFragmentViewModel @Inject constructor(
+    private val dormitoryApi: DormitoryAPIImpl
+) : BaseViewModel(), LifecycleObserver {
     val checkList = MutableLiveData(CheckData())
     val showRoomCheckDialog = MutableLiveData<Int>()
     var roomIndex = -1
@@ -26,7 +33,7 @@ class CheckFragmentViewModel : BaseViewModel() {
         )
 
         if (networkConnection) {
-            dormitoryApi?.sendRoomCheck(
+            dormitoryApi.sendRoomCheck(
                 compositeDisposable,
                 null,
                 completeRoom,

@@ -5,12 +5,13 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import com.bowoon.android.dormitory_management_aos.R
 import com.bowoon.android.dormitory_management_aos.activities.main.viewmodel.MainActivityViewModel
 import com.bowoon.android.dormitory_management_aos.base.DataBindingActivityWithViewModel
-import com.bowoon.android.dormitory_management_aos.base.navGraphIds
 import com.bowoon.android.dormitory_management_aos.base.userType
+import com.bowoon.android.dormitory_management_aos.component.navigation.NavigationGraphImpl
 import com.bowoon.android.dormitory_management_aos.component.navigation.setupWithNavController
 import com.bowoon.android.dormitory_management_aos.databinding.ActivityMainBinding
 import com.bowoon.android.dormitory_management_aos.models.UserType
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : DataBindingActivityWithViewModel<ActivityMainBinding, MainActivityViewModel>
@@ -19,6 +20,9 @@ class MainActivity : DataBindingActivityWithViewModel<ActivityMainBinding, MainA
     companion object {
         val TAG = MainActivity::class.simpleName ?: "MainActivity"
     }
+
+    @Inject
+    lateinit var navGraphIds: NavigationGraphImpl
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,7 +51,7 @@ class MainActivity : DataBindingActivityWithViewModel<ActivityMainBinding, MainA
             binding.bnvBottomFooter.inflateMenu(R.menu.normal_bottom_footer)
         }
 
-        binding.bnvBottomFooter.setupWithNavController(navGraphIds?.getGraphList() ?: mutableListOf(), supportFragmentManager, binding.fcvMainView.id, intent)
+        binding.bnvBottomFooter.setupWithNavController(navGraphIds.getGraphList(), supportFragmentManager, binding.fcvMainView.id, intent)
     }
 
     override fun onSupportNavigateUp(): Boolean {

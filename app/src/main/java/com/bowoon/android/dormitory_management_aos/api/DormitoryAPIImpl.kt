@@ -4,8 +4,11 @@ import com.bowoon.android.common.utils.rxRunOnUiThread
 import com.bowoon.android.dormitory_management_aos.models.*
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.addTo
+import javax.inject.Inject
 
-class DormitoryAPIImpl : DormitoryAPI {
+class DormitoryAPIImpl @Inject constructor(
+    private val dormitory: Dormitory
+) : DormitoryAPI {
     override fun doLogin(
         compositeDisposable: CompositeDisposable,
         params: Map<String, String>?,
@@ -13,7 +16,7 @@ class DormitoryAPIImpl : DormitoryAPI {
         onSuccess: ((LoginResponse) -> Unit)?,
         onError: ((Throwable) -> Unit)?
     ) {
-        Api.dormitory.doLogin("", body)
+        dormitory.doLogin("", body)
             .rxRunOnUiThread()
             .subscribe(
                 { onSuccess?.invoke(it) },
@@ -27,7 +30,7 @@ class DormitoryAPIImpl : DormitoryAPI {
         onSuccess: ((TodayData) -> Unit)?,
         onError: ((Throwable) -> Unit)?
     ) {
-        Api.dormitory.getToday("today.json")
+        dormitory.getToday("today.json")
             .rxRunOnUiThread()
             .subscribe(
                 { onSuccess?.invoke(it) },
@@ -41,7 +44,7 @@ class DormitoryAPIImpl : DormitoryAPI {
         onSuccess: ((NoticeData) -> Unit)?,
         onError: ((Throwable) -> Unit)?
     ) {
-        Api.dormitory.getNotice("notice.json")
+        dormitory.getNotice("notice.json")
             .rxRunOnUiThread()
             .subscribe(
                 { onSuccess?.invoke(it) },
@@ -55,7 +58,7 @@ class DormitoryAPIImpl : DormitoryAPI {
         onSuccess: ((CheckData) -> Unit)?,
         onError: ((Throwable) -> Unit)?
     ) {
-        Api.dormitory.getCheck("check_500.json", params ?: mapOf())
+        dormitory.getCheck("check_500.json", params ?: mapOf())
             .rxRunOnUiThread()
             .subscribe(
                 { onSuccess?.invoke(it) },
@@ -70,7 +73,7 @@ class DormitoryAPIImpl : DormitoryAPI {
         onSuccess: ((RoomCheckResponse) -> Unit)?,
         onError: ((Throwable) -> Unit)?
     ) {
-        Api.dormitory.sendRoomCheck("", body)
+        dormitory.sendRoomCheck("", body)
             .rxRunOnUiThread()
             .subscribe(
                 { onSuccess?.invoke(it) },

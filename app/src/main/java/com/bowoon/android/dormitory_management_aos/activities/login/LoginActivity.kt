@@ -7,7 +7,6 @@ import com.bowoon.android.common.utils.showShortSnackbar
 import com.bowoon.android.dormitory_management_aos.R
 import com.bowoon.android.dormitory_management_aos.activities.login.viewmodel.LoginActivityViewModel
 import com.bowoon.android.dormitory_management_aos.activities.main.MainActivity
-import com.bowoon.android.dormitory_management_aos.base.BaseApplication
 import com.bowoon.android.dormitory_management_aos.base.DataBindingActivityWithViewModel
 import com.bowoon.android.dormitory_management_aos.base.userType
 import com.bowoon.android.dormitory_management_aos.databinding.ActivityLoginBinding

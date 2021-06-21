@@ -8,14 +8,16 @@ import com.bowoon.android.common.utils.rxRunOnUiThread
 import com.bowoon.android.dormitory_management_aos.R
 import com.bowoon.android.dormitory_management_aos.activities.main.viewmodel.MainActivityViewModel
 import com.bowoon.android.dormitory_management_aos.adapter.NoticeAdapter
+import com.bowoon.android.dormitory_management_aos.api.DormitoryAPI
+import com.bowoon.android.dormitory_management_aos.api.DormitoryAPIImpl
 import com.bowoon.android.dormitory_management_aos.base.DataBindingFragmentWithViewModel
-import com.bowoon.android.dormitory_management_aos.base.dormitoryApi
 import com.bowoon.android.dormitory_management_aos.base.networkConnection
 import com.bowoon.android.dormitory_management_aos.databinding.FragmentNoticeBinding
 import com.bowoon.android.dormitory_management_aos.fragments.notice.viewmodels.NoticeFragmentViewModel
 import com.bowoon.android.dormitory_management_aos.models.NoticeData
 import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.rxjava3.core.Single
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class NoticeFragment : DataBindingFragmentWithViewModel<FragmentNoticeBinding, NoticeFragmentViewModel, MainActivityViewModel>
@@ -23,6 +25,9 @@ class NoticeFragment : DataBindingFragmentWithViewModel<FragmentNoticeBinding, N
     companion object {
         val TAG = NoticeFragment::class.simpleName ?: "NoticeFragment"
     }
+
+    @Inject
+    lateinit var dormitoryApi: DormitoryAPIImpl
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -41,7 +46,7 @@ class NoticeFragment : DataBindingFragmentWithViewModel<FragmentNoticeBinding, N
 
     private fun initSampleData() {
         if (networkConnection) {
-            dormitoryApi?.getNotice(
+            dormitoryApi.getNotice(
                 fragmentVM.compositeDisposable,
                 null,
                 {
