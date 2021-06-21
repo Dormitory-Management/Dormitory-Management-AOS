@@ -4,23 +4,16 @@ import android.graphics.Rect
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.bowoon.android.common.log.Log
 import com.bowoon.android.common.utils.dp
-import com.bowoon.android.common.utils.readAssetsFile
-import com.bowoon.android.common.utils.rxRunOnUiThread
 import com.bowoon.android.dormitory_management_aos.R
 import com.bowoon.android.dormitory_management_aos.activities.main.viewmodel.MainActivityViewModel
 import com.bowoon.android.dormitory_management_aos.adapter.TodayAdapter
-import com.bowoon.android.dormitory_management_aos.api.DormitoryAPI
 import com.bowoon.android.dormitory_management_aos.api.DormitoryAPIImpl
 import com.bowoon.android.dormitory_management_aos.base.DataBindingFragmentWithViewModel
-import com.bowoon.android.dormitory_management_aos.base.networkConnection
 import com.bowoon.android.dormitory_management_aos.databinding.FragmentMainBinding
 import com.bowoon.android.dormitory_management_aos.fragments.home.viewmodels.HomeFragmentViewModel
-import com.bowoon.android.dormitory_management_aos.models.TodayData
 import com.bowoon.android.dormitory_management_aos.models.TodayList
 import dagger.hilt.android.AndroidEntryPoint
-import io.reactivex.rxjava3.core.Single
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -43,36 +36,12 @@ class HomeFragment : DataBindingFragmentWithViewModel<FragmentMainBinding, HomeF
         }
         lifecycle.addObserver(fragmentVM)
 
-        initSampleData()
+        fragmentVM.initSampleData(
+            {},
+            {}
+        )
         initLiveData()
         initBinding()
-    }
-
-    private fun initSampleData() {
-        if (networkConnection) {
-            dormitoryApi.getToday(
-                fragmentVM.compositeDisposable,
-                null,
-                {
-                    fragmentVM.today.value = it
-                },
-                {
-                    Log.e(it.message ?: "something wrong")
-                }
-            )
-        } else {
-            Single
-                .just(requireContext().readAssetsFile<TodayData>("today.json"))
-                .rxRunOnUiThread()
-                .subscribe(
-                    {
-                        fragmentVM.today.value = it
-                    },
-                    {
-                        Log.e(it.message ?: "something wrong")
-                    }
-                )
-        }
     }
 
     override fun initLiveData() {

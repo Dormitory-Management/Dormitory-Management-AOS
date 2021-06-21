@@ -16,7 +16,7 @@ class DormitoryAPIImpl @Inject constructor(
         onSuccess: ((LoginResponse) -> Unit)?,
         onError: ((Throwable) -> Unit)?
     ) {
-        dormitory.doLogin("", body)
+        dormitory.doLogin(body)
             .rxRunOnUiThread()
             .subscribe(
                 { onSuccess?.invoke(it) },
@@ -30,7 +30,7 @@ class DormitoryAPIImpl @Inject constructor(
         onSuccess: ((TodayData) -> Unit)?,
         onError: ((Throwable) -> Unit)?
     ) {
-        dormitory.getToday("today.json")
+        dormitory.getToday()
             .rxRunOnUiThread()
             .subscribe(
                 { onSuccess?.invoke(it) },
@@ -44,7 +44,7 @@ class DormitoryAPIImpl @Inject constructor(
         onSuccess: ((NoticeData) -> Unit)?,
         onError: ((Throwable) -> Unit)?
     ) {
-        dormitory.getNotice("notice.json")
+        dormitory.getNotice()
             .rxRunOnUiThread()
             .subscribe(
                 { onSuccess?.invoke(it) },
@@ -58,7 +58,7 @@ class DormitoryAPIImpl @Inject constructor(
         onSuccess: ((CheckData) -> Unit)?,
         onError: ((Throwable) -> Unit)?
     ) {
-        dormitory.getCheck("check_500.json", params ?: mapOf())
+        dormitory.getCheck(params ?: mapOf())
             .rxRunOnUiThread()
             .subscribe(
                 { onSuccess?.invoke(it) },
@@ -73,7 +73,7 @@ class DormitoryAPIImpl @Inject constructor(
         onSuccess: ((RoomCheckResponse) -> Unit)?,
         onError: ((Throwable) -> Unit)?
     ) {
-        dormitory.sendRoomCheck("", body)
+        dormitory.sendRoomCheck(body)
             .rxRunOnUiThread()
             .subscribe(
                 { onSuccess?.invoke(it) },

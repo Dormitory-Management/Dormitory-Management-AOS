@@ -31,12 +31,12 @@ android {
         create("demo") {
             dimension = "version"
             versionNameSuffix = "-demo"
-            buildConfigField("String", "INIT_API", "\"http://localhost:8000/\"")
+            buildConfigField("String", "INIT_API", "\"http://10.0.2.2/\"")
         }
         create("full") {
             dimension = "version"
             versionNameSuffix = "-full"
-            buildConfigField("String", "INIT_API", "\"http://localhost:8000/\"")
+            buildConfigField("String", "INIT_API", "\"http://10.0.2.2/\"")
         }
     }
     compileOptions {

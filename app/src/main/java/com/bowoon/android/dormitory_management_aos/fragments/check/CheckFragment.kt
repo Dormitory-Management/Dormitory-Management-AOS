@@ -4,21 +4,15 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
 import com.bowoon.android.common.log.Log
-import com.bowoon.android.common.utils.readAssetsFile
-import com.bowoon.android.common.utils.rxRunOnUiThread
 import com.bowoon.android.dormitory_management_aos.R
 import com.bowoon.android.dormitory_management_aos.activities.main.viewmodel.MainActivityViewModel
 import com.bowoon.android.dormitory_management_aos.adapter.CheckAdapter
-import com.bowoon.android.dormitory_management_aos.api.DormitoryAPI
 import com.bowoon.android.dormitory_management_aos.api.DormitoryAPIImpl
 import com.bowoon.android.dormitory_management_aos.base.DataBindingFragmentWithViewModel
-import com.bowoon.android.dormitory_management_aos.base.networkConnection
 import com.bowoon.android.dormitory_management_aos.databinding.FragmentCheckBinding
 import com.bowoon.android.dormitory_management_aos.dialogs.RoomCheckDialog
 import com.bowoon.android.dormitory_management_aos.fragments.check.viewmodels.CheckFragmentViewModel
-import com.bowoon.android.dormitory_management_aos.models.CheckData
 import dagger.hilt.android.AndroidEntryPoint
-import io.reactivex.rxjava3.core.Single
 import java.net.HttpURLConnection
 import javax.inject.Inject
 
@@ -42,54 +36,25 @@ class CheckFragment : DataBindingFragmentWithViewModel<FragmentCheckBinding, Che
         }
         lifecycle.addObserver(fragmentVM)
 
-        initSampleData()
-        initLiveData()
-        initBinding()
-    }
-
-    private fun initSampleData() {
-        if (networkConnection) {
-            dormitoryApi.getCheck(
-                fragmentVM.compositeDisposable,
-                mapOf("currentTime" to "${System.currentTimeMillis()}"),
-                {
-                    if (it.state == HttpURLConnection.HTTP_INTERNAL_ERROR) {
-                        binding.tvErrorPage.isVisible = true
-                        binding.rvCheck.isVisible = false
-                    } else {
-                        binding.tvErrorPage.isVisible = false
-                        binding.rvCheck.isVisible = true
-                        fragmentVM.checkList.value = it
-                    }
-                },
-                {
-                    Log.e(it.message ?: "something wrong")
+        fragmentVM.initSampleData(
+            {
+                if (it.state == HttpURLConnection.HTTP_INTERNAL_ERROR) {
                     binding.tvErrorPage.isVisible = true
                     binding.rvCheck.isVisible = false
+                } else {
+                    binding.tvErrorPage.isVisible = false
+                    binding.rvCheck.isVisible = true
+                    fragmentVM.checkList.value = it
                 }
-            )
-        } else {
-            Single
-                .just(requireContext().readAssetsFile<CheckData>("check_200.json"))
-                .rxRunOnUiThread()
-                .subscribe(
-                    {
-                        fragmentVM.checkList.value = it
-                        if (fragmentVM.checkList.value?.state == HttpURLConnection.HTTP_INTERNAL_ERROR) {
-                            binding.tvErrorPage.isVisible = true
-                            binding.rvCheck.isVisible = false
-                        } else {
-                            binding.tvErrorPage.isVisible = false
-                            binding.rvCheck.isVisible = true
-                        }
-                    },
-                    { e ->
-                        Log.e(e.message ?: "something wrong")
-                        binding.tvErrorPage.isVisible = true
-                        binding.rvCheck.isVisible = false
-                    }
-                )
-        }
+            },
+            {
+                Log.e(it.message ?: "something wrong")
+                binding.tvErrorPage.isVisible = true
+                binding.rvCheck.isVisible = false
+            }
+        )
+        initLiveData()
+        initBinding()
     }
 
     override fun initLiveData() {
