@@ -7,14 +7,12 @@ import com.bowoon.android.common.log.Log
 import com.bowoon.android.dormitory_management_aos.R
 import com.bowoon.android.dormitory_management_aos.activities.main.viewmodel.MainActivityViewModel
 import com.bowoon.android.dormitory_management_aos.adapter.CheckAdapter
-import com.bowoon.android.dormitory_management_aos.api.DormitoryAPIImpl
 import com.bowoon.android.dormitory_management_aos.base.DataBindingFragmentWithViewModel
 import com.bowoon.android.dormitory_management_aos.databinding.FragmentCheckBinding
 import com.bowoon.android.dormitory_management_aos.dialogs.RoomCheckDialog
 import com.bowoon.android.dormitory_management_aos.fragments.check.viewmodels.CheckFragmentViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.net.HttpURLConnection
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class CheckFragment : DataBindingFragmentWithViewModel<FragmentCheckBinding, CheckFragmentViewModel, MainActivityViewModel>
@@ -22,9 +20,6 @@ class CheckFragment : DataBindingFragmentWithViewModel<FragmentCheckBinding, Che
     companion object {
         val TAG = CheckFragment::class.simpleName ?: "CheckFragment"
     }
-
-    @Inject
-    lateinit var dormitoryApi: DormitoryAPIImpl
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

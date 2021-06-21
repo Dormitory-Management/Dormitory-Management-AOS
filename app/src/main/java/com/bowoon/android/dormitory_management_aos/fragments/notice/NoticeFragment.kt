@@ -5,12 +5,10 @@ import android.view.View
 import com.bowoon.android.dormitory_management_aos.R
 import com.bowoon.android.dormitory_management_aos.activities.main.viewmodel.MainActivityViewModel
 import com.bowoon.android.dormitory_management_aos.adapter.NoticeAdapter
-import com.bowoon.android.dormitory_management_aos.api.DormitoryAPIImpl
 import com.bowoon.android.dormitory_management_aos.base.DataBindingFragmentWithViewModel
 import com.bowoon.android.dormitory_management_aos.databinding.FragmentNoticeBinding
 import com.bowoon.android.dormitory_management_aos.fragments.notice.viewmodels.NoticeFragmentViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class NoticeFragment : DataBindingFragmentWithViewModel<FragmentNoticeBinding, NoticeFragmentViewModel, MainActivityViewModel>
@@ -18,9 +16,6 @@ class NoticeFragment : DataBindingFragmentWithViewModel<FragmentNoticeBinding, N
     companion object {
         val TAG = NoticeFragment::class.simpleName ?: "NoticeFragment"
     }
-
-    @Inject
-    lateinit var dormitoryApi: DormitoryAPIImpl
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

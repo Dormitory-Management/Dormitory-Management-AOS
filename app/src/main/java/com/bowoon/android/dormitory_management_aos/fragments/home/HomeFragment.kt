@@ -8,13 +8,11 @@ import com.bowoon.android.common.utils.dp
 import com.bowoon.android.dormitory_management_aos.R
 import com.bowoon.android.dormitory_management_aos.activities.main.viewmodel.MainActivityViewModel
 import com.bowoon.android.dormitory_management_aos.adapter.TodayAdapter
-import com.bowoon.android.dormitory_management_aos.api.DormitoryAPIImpl
 import com.bowoon.android.dormitory_management_aos.base.DataBindingFragmentWithViewModel
 import com.bowoon.android.dormitory_management_aos.databinding.FragmentMainBinding
 import com.bowoon.android.dormitory_management_aos.fragments.home.viewmodels.HomeFragmentViewModel
 import com.bowoon.android.dormitory_management_aos.models.TodayList
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class HomeFragment : DataBindingFragmentWithViewModel<FragmentMainBinding, HomeFragmentViewModel, MainActivityViewModel>
@@ -22,9 +20,6 @@ class HomeFragment : DataBindingFragmentWithViewModel<FragmentMainBinding, HomeF
     companion object {
         val TAG = HomeFragment::class.simpleName ?: "MainFragment"
     }
-
-    @Inject
-    lateinit var dormitoryApi: DormitoryAPIImpl
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
